@@ -1,12 +1,11 @@
 import Progress from '../components/Progress'
 import {mapActions, mapGetters} from 'vuex'
 import middleware from './middleware'
-
 export default {
     data(){
         return {
             data : [],
-            page: null,
+            page: 1,
             lengthpage: null,
             loading:true,
             keyword:'',
@@ -28,8 +27,10 @@ export default {
         }),
 
         // method ambil data
-        async go(){
+        async go(page = null){
             let url = this.url
+            this.page = page == null ? this.page : page
+            console.log(this.page)
             if(this.page > 1) {
                 url = url + '?page=' +this.page + "&keyword=" + this.keyword
             }else{
@@ -61,7 +62,7 @@ export default {
             .then((ress) => {
                 console.log(ress)
                 this.setSnakbar({
-                    color:'success',
+                    color_snakbar:'success',
                     pesan:ress.data.message,
                     status:true
                 })

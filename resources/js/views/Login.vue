@@ -47,7 +47,7 @@
                         <br>
                         <v-btn
                         :disabled="!valid"
-                        color="pink accent-3"
+                        :color="color"
                         class="mr-4 white--text"
                         rounded
                         block
@@ -114,7 +114,7 @@ export default {
             })
             .catch((err) =>{
                 this.setSnakbar({
-                    color:'red',
+                    color_snakbar:'red',
                     pesan : 'Email atau Password salah',
                     status : true
                 })
@@ -128,7 +128,8 @@ export default {
             user:'auth/user',
             menu: 'auth/menu',
             token : 'auth/token',
-            beforeUrl : 'BeforeUrl/url'
+            beforeUrl : 'BeforeUrl/url',
+            color: 'color/color'
         })
     },
     async beforeRouteEnter(to, from, next){

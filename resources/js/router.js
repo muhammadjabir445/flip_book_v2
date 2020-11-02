@@ -33,6 +33,13 @@ const router = new Router({
             MenuRouter,
             RoleManagementRouter,
 
+            {
+                path: '/color',
+                name: 'color',
+                component:()=>import('./views/setting/color.vue'),
+                meta:{auth:true}
+
+            },
         ]
 
     },

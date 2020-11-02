@@ -21,6 +21,7 @@ Route::post('/register', 'AuthJWT\AuthController@register');
 Route::post('/login', 'AuthJWT\AuthController@login');
 Route::post('/logout', 'AuthJWT\AuthController@logout');
 Route::post('/edit-profile','AuthJWT\AuthController@EditProfile');
+Route::get('/setting-color','Setting\SettingController@color');
 
 
 Route::middleware(['auth:api'])->group(function () {
