@@ -6,13 +6,13 @@
             <Header  />
             <Sidebar  />
         </div>
-        <v-content class="">
+        <v-main class="">
         <v-container fluid grid-list-md text-xs-center >
             <v-slide-y-transition mode="out-in">
             <router-view></router-view>
             </v-slide-y-transition>
         </v-container>
-        </v-content>
+        </v-main>
     </v-app>
 
     <v-app v-else-if="$route.name == 'login'" height="100%">

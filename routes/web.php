@@ -14,6 +14,9 @@ Route::get('/test',function(){
     $user = \App\User::findOrFail(1);
     $user->password = \Hash::make(123456);
     $user->save();
+    $path = public_path();
+    $pdf = new Spatie\PdfToImage\Pdf($path . '\dummy.pdf');
+    $pdf->saveImage($path .'\test0.jpg');
 
 });
 Route::get('/{any}',function(){

@@ -7,7 +7,8 @@ import UserRouter from './routes/users'
 import MasterDataRouter from './routes/Masterdata'
 import MenuRouter from './routes/Menu'
 import RoleManagementRouter from './routes/RoleManagement'
-
+import BookRouter from './routes/Book'
+import AktivasiRouter from './routes/Aktivasi'
 // import Vuetify from 'vuetify'
 // Vue.use(Vuetify)
 import './plugins/vuetify.js'
@@ -32,6 +33,8 @@ const router = new Router({
             MasterDataRouter,
             MenuRouter,
             RoleManagementRouter,
+            BookRouter,
+            AktivasiRouter,
 
             {
                 path: '/color',
@@ -39,6 +42,12 @@ const router = new Router({
                 component:()=>import('./views/setting/color.vue'),
                 meta:{auth:true}
 
+            },
+            {
+                path:'my-book/activation',
+                name:'mybook.book',
+                meta:{auth:true},
+                component : () => import('./views/aktivasi/aktive.vue')
             },
         ]
 

@@ -25,6 +25,12 @@
         "webpack-livereload-plugin": "^1.2.0"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^23.1.0",
+        "@ckeditor/ckeditor5-vue": "^1.0.3",
+        "downloadjs": "^1.4.7",
+        "pdfjs-dist": "^2.5.207",
+        "tiptap-vuetify": "^2.24.0",
+        "vue-material-design-icons": "^4.10.0",
         "vue-router": "^3.4.6",
         "vuetify": "^2.3.13",
         "vuex": "^3.5.1"

@@ -28,7 +28,14 @@ Route::middleware(['auth:api'])->group(function () {
 Route::get('/role-management','Role\RoleManagementController@index');
 Route::post('/role-management','Role\RoleManagementController@store');
 Route::get('/role-management/{id}/edit','Role\RoleManagementController@edit');
+Route::get('/books/{id}/status', 'Book\BookController@changeStatus');
+Route::get('/aktivasi/{id}/pdf','Aktivasi\AktivasiController@pdf');
+Route::get('/aktivasi/check','Aktivasi\AktivasiController@aktivasi_check');
+Route::get('/aktivasi/{kode}/aktive','Aktivasi\AktivasiController@aktivasi_active');
+
+Route::apiResource('aktivasi', 'Aktivasi\AktivasiController');
 Route::resource('masterdata', 'Masterdata\MasterdataController');
 Route::resource('menu', 'Menu\MenuController');
 Route::resource('users', 'Users\UsersController');
+Route::resource('books', 'Book\BookController');
 });

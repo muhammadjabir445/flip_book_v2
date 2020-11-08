@@ -80,11 +80,10 @@
 <script>
 // import {mapActions} from 'vuex'
 import UsersMixin from '../../mixins/UsersMixin'
-import middleware from '../../mixins/middleware'
 export default {
     name: 'masterdata.edit',
 
-    mixins:[UsersMixin,middleware],
+    mixins:[UsersMixin],
     methods:{
         async save(){
             this.loading = true

@@ -13,11 +13,11 @@
                             <v-col
                                 cols="6"
                             >
-                            <v-text-field
+                             <v-text-field
                                 v-model="keyword"
                                 label="Pencarian"
-                                v-on:keyup = "go"
-                                  :color="color"
+                                v-on:keyup ="go(page)"
+                                :color="color"
                             ></v-text-field>
                             </v-col>
 
