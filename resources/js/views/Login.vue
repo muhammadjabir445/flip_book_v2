@@ -103,7 +103,6 @@ export default {
             data.append('password',this.password)
             await this.axios.post('/login',data)
             .then((ress) => {
-                console.log(ress)
                 this.setAuth({
                     user: ress.data.user,
                     token : ress.data.access_token,

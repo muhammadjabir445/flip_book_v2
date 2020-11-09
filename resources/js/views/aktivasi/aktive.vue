@@ -46,7 +46,7 @@
                     width="300px"
                     depressed
                     v-if="data_aktivasi || pesan_success"
-                    @click="cancel"
+                    @click="cancel()"
                     >
                     {{data_aktivasi ? 'Cancel' : 'Ulangi'}}
                     </v-btn>
@@ -106,7 +106,7 @@ export default {
             })
         },
 
-        cancle() {
+        cancel() {
             this.data_aktivasi = ''
             this.pesan_error = ''
             this.pesan_success = ''

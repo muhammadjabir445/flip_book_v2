@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Jobs\ProcessGenerate;
 use App\Models\Book;
 use App\Models\Deskripsi;
 use DB;
@@ -18,7 +19,7 @@ class BookService {
            $book->penerbit = $request->penerbit;
            $file = $request->file('file')->store('file_pdf','public');
            $book->file = $file;
-           $book->folder = \Str::slug($request->judul,'-');
+           $book->folder = 'data_buku/' . \Str::slug($request->kode,'-');
            $book->pages = $request->pages;
            if ($book->save()) {
                $deskripsi = json_decode($request->deskripsi);
@@ -41,6 +42,7 @@ class BookService {
                DB::commit();
                $message = 'Berhasil simpan buku';
                $status = 200;
+               ProcessGenerate::dispatch($book);
            }
        } catch (\Exception $e) {
             DB::rollback();
@@ -78,8 +80,13 @@ class BookService {
            if ($request->file('file')) {
                 $book->pages = $request->pages;
                 $file = $request->file('file')->store('file_pdf','public');
+                if (Storage::exists('public/' .$book->file)) {
+                    Storage::delete('public/' .$book->file);
+                    Storage::deleteDirectory('public/' .$book->folder);
+                }
                 $book->file = $file;
-                $book->folder = \Str::slug($request->judul,'-');
+                $book->folder = 'data_buku/' . \Str::slug($request->kode,'-');
+
            }
 
            if ($book->save()) {
@@ -105,6 +112,7 @@ class BookService {
                DB::commit();
                $message = 'Berhasil edit buku';
                $status = 200;
+               ProcessGenerate::dispatch($book);
            }
        } catch (\Exception $e) {
             DB::rollback();

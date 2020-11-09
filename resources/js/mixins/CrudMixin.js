@@ -59,7 +59,6 @@ export default {
             let url = this.url + `/${this.idDelete}`
             this.axios.delete(url,this.config)
             .then((ress) => {
-                console.log(ress)
                 this.setSnakbar({
                     color_snakbar:'success',
                     pesan:ress.data.message,

@@ -38,7 +38,7 @@
                         required
                         ></v-text-field>
 
-                        <p id="dataPages" style="display:none"></p>
+                        <p id="dataPages"></p>
                         <input type="file" id="foto_profile" ref="foto_profile" accept="" @change="eventChange">
                         <br>
                         <br>
@@ -203,7 +203,6 @@ export default {
 
             await this.axios.post(url,data,this.config)
             .then((ress) => {
-                console.log(ress)
                 this.setSnakbar({
                     status:true,
                     pesan:ress.data.message,

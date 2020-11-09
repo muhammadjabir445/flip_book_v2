@@ -28,6 +28,7 @@
         "@ckeditor/ckeditor5-build-classic": "^23.1.0",
         "@ckeditor/ckeditor5-vue": "^1.0.3",
         "downloadjs": "^1.4.7",
+        "flipbook-vue": "^0.10.1",
         "pdfjs-dist": "^2.5.207",
         "tiptap-vuetify": "^2.24.0",
         "vue-material-design-icons": "^4.10.0",
