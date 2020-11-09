@@ -203,7 +203,6 @@ export default {
 
             await this.axios.post(url,data,this.config)
             .then((ress) => {
-                console.log(ress)
                 this.setSnakbar({
                     status:true,
                     pesan:ress.data.message,

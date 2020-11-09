@@ -14,15 +14,22 @@ class Book extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $direktori = explode('/',$this->folder);
+        $foto = \Storage::exists(public_path('storage/' .$this->folder . "/{$direktori['1']}" . "-0.jpg")) ? asset('storage/' . $this->folder . "/{$direktori['1']}" . "-0.jpg") :'';
+        $data = [
             'id' => $this->id,
             'judul' => $this->judul_buku,
             'kode' => $this->kode_buku,
             'penerbit' => $this->penerbit,
             'deskripsi' => $this->deskripsi,
-            'file' => asset('storage/' . $this->file),
+            'foto' => asset('storage/' . $this->folder . "/{$direktori['1']}" . "-0.jpg"),
             'pages'=>$this->pages,
             'status' => $this->status
         ];
+        if (\Auth::user()->id_role !== 25) {
+            $data['file'] = asset('storage/' . $this->file);
+        }
+
+        return $data;
     }
 }

@@ -32,6 +32,8 @@ Route::get('/books/{id}/status', 'Book\BookController@changeStatus');
 Route::get('/aktivasi/{id}/pdf','Aktivasi\AktivasiController@pdf');
 Route::get('/aktivasi/check','Aktivasi\AktivasiController@aktivasi_check');
 Route::get('/aktivasi/{kode}/aktive','Aktivasi\AktivasiController@aktivasi_active');
+Route::get('/my-book','Book\BookController@my_book');
+Route::get('/my-book/{kode}/read','Book\BookController@my_book_read');
 
 Route::apiResource('aktivasi', 'Aktivasi\AktivasiController');
 Route::resource('masterdata', 'Masterdata\MasterdataController');

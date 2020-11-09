@@ -16,6 +16,14 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function my_book(Request $request){
+        $book = \Auth::user()->books()->where('judul_buku','LIKE',"%$request->keyword%")->orderBy('judul_buku','ASC')->paginate(9);
+        return new BookCollection($book);;
+    }
+    public function my_book_read($kode) {
+        $book = Book::where('kode_buku',$kode)->first();
+        return new BookBook($book);
+    }
     public function index(Request $request)
     {
         $books = Book::with('deskripsi')
@@ -87,7 +95,7 @@ class BookController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => $validator->errors()->first()
-            ],500);
+            ],400);
         }
         return BookService::store($request);
     }
@@ -126,12 +134,12 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = $this->validasi($request);
+        $validator = $this->validasi($request,$id);
 
         if ($validator->fails()) {
             return response()->json([
                 'message' => $validator->errors()->first()
-            ],500);
+            ],400);
         }
         return BookService::update($request,$id);
 

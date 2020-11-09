@@ -22,6 +22,9 @@ class User extends Authenticatable implements JWTSubject
         'name', 'email', 'password',
     ];
 
+    public function books(){
+        return $this->belongsToMany('App\Models\Book','book_user','id_user','id_buku');
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

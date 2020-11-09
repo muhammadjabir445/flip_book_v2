@@ -3,6 +3,7 @@
     <v-dialog
       v-model="dialog_detail"
       width="900"
+      @click:outside="close"
       @keydown.esc="close"
     >
       <v-card>

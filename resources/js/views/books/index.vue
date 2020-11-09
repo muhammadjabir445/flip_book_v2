@@ -38,6 +38,7 @@
                         <thead>
                             <tr>
                             <th class="text-left">Nomor</th>
+                            <th class="text-left">Sampul</th>
                             <th class="text-left">Judul</th>
                             <th class="text-left">Penerbit</th>
                             <th class="text-left">Total Pages</th>
@@ -48,6 +49,10 @@
                         <tbody>
                             <tr v-for="(item,index) in data" :key="item.id">
                                 <td class="text-left">{{++index}}</td>
+                                <td class="text-left">
+                                    <v-img :src="item.foto" height="120px" width="80px" v-if="item.foto"/>
+                                    {{!item.foto ? 'Sedang diproses' : ''}}
+                                </td>
                                 <td class="text-left">{{item.judul}}</td>
                                 <td class="text-left">{{item.penerbit}}</td>
                                 <td class="text-left">{{item.pages}}</td>
