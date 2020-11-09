@@ -38,7 +38,7 @@
                         required
                         ></v-text-field>
 
-                        <p id="dataPages" style="display:none"></p>
+                        <p id="dataPages"></p>
                         <input type="file" id="foto_profile" ref="foto_profile" accept="" @change="eventChange">
                         <br>
                         <br>

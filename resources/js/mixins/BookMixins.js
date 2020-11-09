@@ -81,6 +81,7 @@ export default {
                 //Step 5:PDFJS should be able to read this
                 let loadingTask = pdfjs.getDocument(typedarray)
                 loadingTask.promise.then((doc) => {
+                    console.log(doc.numPages)
                     let html = document.getElementById('dataPages')
                     html.innerText = doc.numPages
                 })
