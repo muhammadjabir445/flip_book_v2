@@ -46,6 +46,44 @@
 
             />
         </v-container>
+            <v-container>
+                <div class="tab-deskripsi" v-if="data.deskripsi.length > 0">
+            <v-tabs
+            :background-color="color"
+            dark
+            v-model="tab"
+            next-icon="mdi-arrow-right-bold-box-outline"
+            prev-icon="mdi-arrow-left-bold-box-outline"
+            show-arrows
+            >
+            <v-tabs-slider color="white"></v-tabs-slider>
+            <v-tab
+
+                v-for="(item,index) in data.deskripsi"
+                :key="index"
+            >
+                {{ item.title }}
+            </v-tab>
+            </v-tabs>
+
+
+            <v-tabs-items v-model="tab">
+                <v-tab-item
+                    v-for="(item,index) in data.deskripsi"
+                    :key="index"
+                >
+                    <v-card height="300px">
+                    <v-card-text v-html="item.deskripsi" style="position:relative">
+
+
+                    </v-card-text>
+
+                    </v-card>
+                </v-tab-item>
+            </v-tabs-items>
+
+            </div>
+            </v-container>
     </v-app>
 
 </template>

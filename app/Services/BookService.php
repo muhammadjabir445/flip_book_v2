@@ -89,7 +89,7 @@ class BookService {
            }
 
            if ($book->save()) {
-               if ($book->deskripsi()->delete()) {
+               if ($book->deskripsi()->delete() || $request->deskripsi) {
                     $deskripsi = json_decode($request->deskripsi);
                     foreach ($deskripsi as $value) {
                         $book_deskripsi = new Deskripsi();

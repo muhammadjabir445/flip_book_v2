@@ -50,14 +50,14 @@
                         <br>
                         <div class="tab-deskripsi" v-if="deskripsi.length > 0">
                             <v-tabs
-                            background-color="cyan"
+                            :background-color="color"
                             dark
                             v-model="tab"
                             next-icon="mdi-arrow-right-bold-box-outline"
                             prev-icon="mdi-arrow-left-bold-box-outline"
                             show-arrows
                             >
-                            <v-tabs-slider color="yellow"></v-tabs-slider>
+                            <v-tabs-slider color="white"></v-tabs-slider>
                             <v-tab
 
                                 v-for="(item,index) in deskripsi"

@@ -7,9 +7,9 @@
             align="center"
             >
                 <v-col
-                class="d-none d-sm-inline-block col-6"
+                class="col-12 col-sm-6"
                 >
-                    <img src="http://localhost:8000/storage/login.png" width="100%" alt="">
+                    <img :src="imageLogin" width="100%" alt="">
                 </v-col>
 
                 <v-col
@@ -44,6 +44,8 @@
                         label="password"
                         required
                         ></v-text-field>
+                        <small>Lupa password ?</small>
+                        <br>
                         <br>
                         <v-btn
                         :disabled="!valid"
@@ -51,10 +53,23 @@
                         class="mr-4 white--text"
                         rounded
                         block
+                        depressed
                         :loading="loading"
                         @click="login"
                         >
                         Log-in
+                        </v-btn>
+                        <br>
+
+                        <v-btn
+                        class="mr-4 white--text"
+                        rounded
+                        block
+                        depressed
+                        color="pink"
+                        to="/register"
+                        >
+                        Register
                         </v-btn>
                     </v-form>
                 </v-container>
@@ -69,112 +84,10 @@
 </template>
 
 <script>
-import {mapActions,mapGetters} from 'vuex'
-import store from '../stores'
-import axios from 'axios'
 
+import AuthMixin from '../mixins/AuthMixin'
 export default {
-    name: 'Login',
-     data: () => ({
-      valid: false,
-      password: '',
-      nameRules: [
-        v => !!v || 'Password is required',
-
-      ],
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
-      loading:false
-    }),
-
-    methods : {
-        ...mapActions({
-            setAuth:'auth/setAuth',
-            setSnakbar:'snakbar/setSnakbar'
-        }),
-
-        async login(){
-            this.loading = true
-            let data = new FormData()
-            data.append('email',this.email)
-            data.append('password',this.password)
-            await this.axios.post('/login',data)
-            .then((ress) => {
-                this.setAuth({
-                    user: ress.data.user,
-                    token : ress.data.access_token,
-                    menu : ress.data.menu
-                })
-                localStorage.setItem('token', this.token);
-                this.$router.push('/dahsboard')
-            })
-            .catch((err) =>{
-                this.setSnakbar({
-                    color_snakbar:'red',
-                    pesan : 'Email atau Password salah',
-                    status : true
-                })
-            })
-            this.loading = false
-
-        }
-    },
-    computed: {
-        ...mapGetters({
-            user:'auth/user',
-            menu: 'auth/menu',
-            token : 'auth/token',
-            beforeUrl : 'BeforeUrl/url',
-            color: 'color/color'
-        })
-    },
-    async beforeRouteEnter(to, from, next){
-        // console.log(to)
-        // console.log(from)
-        // console.log(next)
-        let token = localStorage.getItem('token')
-
-        console.log(token)
-        let config = {
-            headers: {
-            'Authorization': 'Bearer ' + token,
-            }
-        }
-        if (token) {
-        await axios.get('/api/me',config)
-            .then((ress) =>{
-                store.dispatch('auth/setAuth',{
-                    user: ress.data.user,
-                    token : ress.data.access_token,
-                    menu : ress.data.menu
-                })
-                next('login')
-            }
-                )
-            .catch((err) =>console.log(err))
-        }
-        next()
-    },
-//    async beforeMount(){
-//        let token = localStorage.token
-//        if (token) {
-//            let config = {
-//                 headers: {
-//                 'Authorization': 'Bearer ' + token,
-//                 }
-//             }
-//             await this.axios.get('/me',config)
-//                 .then((ress) =>{
-//                     console.log(ress.data)
-//                 }
-//                     )
-//                 .catch((err) =>console.log(err))
-//        }
-//     }
-
+    mixins:[AuthMixin]
 }
 </script>
 
