@@ -11,15 +11,16 @@ class BookService {
     public static function store($request) {
 
        try {
+           $kode = \Str::lower($request->kode);
             DB::beginTransaction();
             $error = 0;
            $book = new Book();
            $book->judul_buku = $request->judul;
-           $book->kode_buku = $request->kode;
+           $book->kode_buku = $kode;
            $book->penerbit = $request->penerbit;
            $file = $request->file('file')->store('file_pdf','public');
            $book->file = $file;
-           $book->folder = 'data_buku/' . \Str::slug($request->kode,'-');
+           $book->folder = 'data_buku/' . \Str::slug($kode,'-');
            $book->pages = $request->pages;
            if ($book->save()) {
                $deskripsi = json_decode($request->deskripsi);
@@ -69,23 +70,21 @@ class BookService {
     }
 
     public static function update($request,$id) {
-
+        $file_lama='';
        try {
-        DB::beginTransaction();
-        $error = 0;
+            DB::beginTransaction();
+            $error = 0;
+           $kode = \Str::lower($request->kode);
            $book = Book::findOrFail($id);
            $book->judul_buku = $request->judul;
-           $book->kode_buku = $request->kode;
+           $book->kode_buku = $kode;
            $book->penerbit = $request->penerbit;
            if ($request->file('file')) {
                 $book->pages = $request->pages;
+                $file_lama=$book->file;
                 $file = $request->file('file')->store('file_pdf','public');
-                if (Storage::exists('public/' .$book->file)) {
-                    Storage::delete('public/' .$book->file);
-                    Storage::deleteDirectory('public/' .$book->folder);
-                }
                 $book->file = $file;
-                $book->folder = 'data_buku/' . \Str::slug($request->kode,'-');
+                $book->folder = 'data_buku/' . \Str::slug($kode,'-');
 
            }
 
@@ -112,7 +111,13 @@ class BookService {
                DB::commit();
                $message = 'Berhasil edit buku';
                $status = 200;
-               ProcessGenerate::dispatch($book);
+               if($request->file('file')){
+                    if (Storage::exists('public/' .$file_lama)) {
+                        Storage::delete('public/' .$file_lama);
+                        Storage::deleteDirectory('public/' .$book->folder);
+                    }
+                    ProcessGenerate::dispatch($book);
+               }
            }
        } catch (\Exception $e) {
             DB::rollback();
@@ -130,6 +135,7 @@ class BookService {
         $book->deskripsi()->delete();
         if (Storage::exists('public/' .$book->file)) {
             Storage::delete('public/' .$book->file);
+            Storage::deleteDirectory('public/' .$book->folder);
         }
         $book->delete();
 
