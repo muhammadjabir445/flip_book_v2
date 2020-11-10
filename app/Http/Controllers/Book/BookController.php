@@ -17,7 +17,12 @@ class BookController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function my_book(Request $request){
-        $book = \Auth::user()->books()->where('judul_buku','LIKE',"%$request->keyword%")->orderBy('judul_buku','ASC')->paginate(9);
+        $book = \Auth::user()
+        ->books()
+        ->with('deskripsi')
+        ->where('judul_buku','LIKE',"%$request->keyword%")
+        ->orderBy('judul_buku','ASC')
+        ->paginate(9);
         return new BookCollection($book);;
     }
     public function my_book_read($kode) {

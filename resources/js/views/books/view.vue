@@ -28,7 +28,7 @@
                     :src="item.foto"
                     ></v-img>
 
-                    <v-card-title>{{item.judul_buku}}</v-card-title>
+                    <v-card-title>{{item.judul}}</v-card-title>
                     <v-divider class="mx-4"></v-divider>
 
                     <v-card-actions>

@@ -28,11 +28,24 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
+        $validator = \Validator::make($request->all(), [
+            'email' => 'required|unique:users,email',
+            'password' => 'required'
+        ],[
+            '*.unique' => 'Email Sudah Tersedia',
+            '*.required' => ':attribute tidak boleh kosong'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()->first()
+            ],400);
+        }
         $user = new \App\User;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = \Hash::make($request->password);
-        $user->id_role = $request->role;
+        $user->id_role = $request->role ? $request->role : 25;
         $user->save();
 
         return $this->login($request);

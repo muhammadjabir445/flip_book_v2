@@ -74,6 +74,11 @@ const router = new Router({
         component:()=>import('./views/Login.vue')
     },
     {
+        path: '/register',
+        name: 'register',
+        component:()=>import('./views/Register.vue')
+    },
+    {
         path: '/404',
         name: 'notfound',
     },
@@ -99,11 +104,15 @@ router.beforeEach(async (to,from,next) => {
         }else{
             next('/login')
         }
-    }else if(to.name == 'login'){
-        if (!store.getters['auth/user']) {
+    }else if(to.name === 'login'){
+        if (store.getters['auth/user'] == null) {
             next()
         }else{
-            router.push(store.getters['BeforeUrl/url'])
+            if (store.getters['BeforeUrl/url'] || to.name !== 'login') {
+                router.push(store.getters['BeforeUrl/url'])
+            } else {
+                router.push('/dahsboard')
+            }
 
         }
     }else{
