@@ -29,8 +29,6 @@
                     ></v-img>
 
                     <v-card-title>{{item.judul_buku}}</v-card-title>
-                    <!-- <v-card-subtitle>TEstt</v-card-subtitle> -->
-
                     <v-divider class="mx-4"></v-divider>
 
                     <v-card-actions>
