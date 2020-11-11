@@ -17,7 +17,9 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         if ($request) {
-            $user = User::with('role')->where(function($q) use($request) {
+            $user = User::with(['role'=>function($q) {
+                $q->withTrashed();
+            }])->where(function($q) use($request) {
                 $q->where('name','LIKE',"%{$request->keyword}%")
                     ->orWhere('email','LIKE',"%{$request->keyword}%")
                     ->orWhereHas('role',function($q) use ($request){
