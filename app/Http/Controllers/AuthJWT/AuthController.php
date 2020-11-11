@@ -137,4 +137,25 @@ class AuthController extends Controller
     {
         return Auth::guard()->user();
     }
+
+    public function password_reset($request){
+        $validator = \Validator::make($request->all(), [
+            'email' => 'required|exists:users,email',
+        ],[
+            '*.exists' => 'Email Salah',
+            '*.required' => ':attribute tidak boleh kosong'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()->first()
+            ],400);
+        }
+
+        DB::table('password_reset')->insert([
+            'email' => $request->email,
+            'token' => \Str::random(15),
+            'created_at' => \Carbon\Carbon::now()
+        ]);
+    }
 }

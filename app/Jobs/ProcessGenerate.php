@@ -18,9 +18,13 @@ class ProcessGenerate implements ShouldQueue
      * @return void
      */
     protected $data;
-    public function __construct($data)
+    public $tires = 3;
+    public $timeout = 600;
+    protected $page;
+    public function __construct($data,$page)
     {
         $this->data = $data;
+        $this->page =$page;
     }
 
     /**
@@ -33,7 +37,7 @@ class ProcessGenerate implements ShouldQueue
         $file_pdf= public_path("storage/{$this->data->file}");
         $output =  public_path("storage/{$this->data->folder}/{$this->data->kode_buku}".".jpg");
         \Storage::makeDirectory('public/' . $this->data->folder);
-        exec("magick convert -verbose -density 150 -background white -alpha remove $file_pdf -quality 100 -sharpen 0x1.0 $output");
+        exec("magick convert -verbose -density 150 -background white -alpha remove {$file_pdf}{$this->page} -quality 100 -sharpen 0x1.0 $output");
 
     }
 }
