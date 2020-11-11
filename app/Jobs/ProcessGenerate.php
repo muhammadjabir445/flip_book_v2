@@ -18,6 +18,8 @@ class ProcessGenerate implements ShouldQueue
      * @return void
      */
     protected $data;
+    public $tires = 3; 
+   public $timeout = 600; 
     public function __construct($data)
     {
         $this->data = $data;
