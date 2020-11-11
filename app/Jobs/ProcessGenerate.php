@@ -37,6 +37,7 @@ class ProcessGenerate implements ShouldQueue
         $file_pdf= public_path("storage/{$this->data->file}");
         $output =  public_path("storage/{$this->data->folder}/{$this->data->kode_buku}".".jpg");
         \Storage::makeDirectory('public/' . $this->data->folder);
+
         exec("convert -verbose -density 150 -background white -alpha remove {$file_pdf}{$this->page} -quality 85 -sharpen 0x1.0 $output");
 
 

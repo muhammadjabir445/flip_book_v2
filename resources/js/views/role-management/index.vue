@@ -25,7 +25,7 @@
                                 cols="6"
                                 align="right"
                             >
-                                <v-btn color="primary"  @click="$router.push('/masterdata/5/edit')" small tile>
+                                <v-btn color="primary"  @click="$router.push('/masterdata/5/edit')" small tile v-if="user.id_role == 23">
                                     Edit Role
                                 </v-btn>
                             </v-col>
@@ -64,11 +64,18 @@
 
 </template>
 <script>
+import { mapGetters } from 'vuex'
 
 import CrudMixin from '../../mixins/CrudMixin'
 export default {
     name: 'role-management',
     mixins:[CrudMixin],
+    computed: {
+        ...mapGetters({
+            user:'auth/user'
+        })
+    },
+
 }
 </script>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AuthJWT;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User\User;
+use App\Jobs\SendResetPassword;
 use App\Models\Menu;
 use App\User as AppUser;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        $this->middleware('auth:api', ['except' => ['login','register','password_reset','password_reset_action']]);
     }
 
     public function login(Request $request)
@@ -138,7 +139,7 @@ class AuthController extends Controller
         return Auth::guard()->user();
     }
 
-    public function password_reset($request){
+    public function password_reset(Request $request){
         $validator = \Validator::make($request->all(), [
             'email' => 'required|exists:users,email',
         ],[
@@ -151,11 +152,51 @@ class AuthController extends Controller
                 'message' => $validator->errors()->first()
             ],400);
         }
+        $token = \Str::random(60);
 
-        DB::table('password_reset')->insert([
+        $data = \DB::table('password_resets')->insert([
             'email' => $request->email,
-            'token' => \Str::random(15),
+            'token' => $token,
             'created_at' => \Carbon\Carbon::now()
         ]);
+        $akun = AppUser::where('email',$request->email)->first();
+        // SendResetPassword::dispatch($akun);
+        return response()->json([
+            'message' => 'Silakan Check Email Anda'
+        ]);
+    }
+
+    public function password_reset_action(Request $request, $token) {
+        $validator = \Validator::make($request->all(), [
+            'password' => 'required',
+            'token' => 'required|exists:password_resets,token'
+        ],[
+            '*.required' => ':attribute tidak boleh kosong'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()->first()
+            ],400);
+        }
+        $data = \DB::table('password_resets')->where('token',$token)->first();
+        $now = \Carbon\Carbon::now();
+        $data_date = \Carbon\Carbon::parse($data->created_at);
+        $selisi = $data_date->diffInHours($now,false);
+        if ($selisi >= 6) {
+            return response()->json([
+                'message' =>'Expired'
+            ],400);
+        }
+        $update = AppUser::where('email',$data->email)->update([
+            'password' => \Hash::make($request->password)
+        ]);
+
+        if ($update) {
+            \DB::table('password_resets')->where('email',$data->email)->delete();
+        }
+        return response()->json([
+            'message' =>'Berhasil'
+        ],200);
     }
 }

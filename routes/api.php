@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::post('/reset-password','AuthJWT\AuthController@password_reset');
+Route::post('/reset-password/{token}','AuthJWT\AuthController@password_reset_action');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -24,6 +25,7 @@ Route::post('/edit-profile','AuthJWT\AuthController@EditProfile');
 Route::get('/setting-color','Setting\SettingController@color');
 
 
+
 Route::middleware(['auth:api'])->group(function () {
 Route::get('/role-management','Role\RoleManagementController@index');
 Route::post('/role-management','Role\RoleManagementController@store');
@@ -33,6 +35,7 @@ Route::get('/aktivasi/{id}/pdf','Aktivasi\AktivasiController@pdf');
 Route::get('/aktivasi/check','Aktivasi\AktivasiController@aktivasi_check');
 Route::get('/aktivasi/{kode}/aktive','Aktivasi\AktivasiController@aktivasi_active');
 Route::get('/my-book','Book\BookController@my_book');
+Route::get('/books-list','Book\BookController@books_list');
 Route::get('/my-book/{kode}/read','Book\BookController@my_book_read');
 
 Route::apiResource('aktivasi', 'Aktivasi\AktivasiController');

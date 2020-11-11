@@ -17,11 +17,14 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         if ($request) {
-            $user = User::with('role')->where('name','LIKE',"%{$request->keyword}%")
+            $user = User::with('role')->where(function($q) use($request) {
+                $q->where('name','LIKE',"%{$request->keyword}%")
                     ->orWhere('email','LIKE',"%{$request->keyword}%")
                     ->orWhereHas('role',function($q) use ($request){
                         $q->where('description','LIKE',"%{$request->keyword}%");
-                    })
+                    });
+                })
+                    ->where('id_role','!=',23)
                     ->paginate(15);
         }else{
             $user = User::with('role')
@@ -38,7 +41,12 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $role = MasterDataDetail::where('id_master_data',5)->get();
+        $role = MasterDataDetail::where('id_master_data',5)->where(function($q) {
+            $user = \Auth::user();
+            if ($user->id_role !== 23) {
+                $q->where('id','!=',23);
+            }
+        })->get();
         return response()->json([
             'roles' => $role
         ]);
@@ -94,7 +102,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $role = MasterDataDetail::where('id_master_data',5)->get();
+        $role = MasterDataDetail::where('id_master_data',5)->where('id','!=',23)->get();
         $user = User::findOrFail($id);
         return response()->json([
             'user' =>$user,
