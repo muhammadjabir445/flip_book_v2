@@ -8,6 +8,34 @@ use DB;
 use Illuminate\Support\Facades\Storage;
 
 class BookService {
+    protected static function set_page($pages) {
+        $data = $pages;
+        $page = [];
+        $start_page =0;
+        $end_page = 99;
+        if ($data > 100) {
+            while ($data !== 0) {
+                if ($data > 100) {
+                    array_push($page,"[$start_page-$end_page]");
+                    $start_page = $end_page + 1;
+                    $data = $data - 100;
+                    if ($data > 100) {
+                        $end_page = $start_page + 99;
+                    } else {
+                        $end_page = $data - 1;
+                    }
+                } else {
+                    $end_page = $start_page + $end_page;
+                    array_push($page,"[$start_page-$end_page]");
+                    $data = 0;
+                }
+            }
+        } else  {
+            $end_page = $data - 1;
+            array_push($page,"[$start_page-$end_page]");
+        }
+        return $page;
+    }
     public static function store($request) {
 
        try {
@@ -40,10 +68,14 @@ class BookService {
                 throw new \Exception('Gagal simpan buku');
            }
            if ($error === 0) {
+               $page = BookService::set_page($request->pages);
+               foreach ($page as $value) {
+                    ProcessGenerate::dispatch($book,$value);
+               }
                DB::commit();
                $message = 'Berhasil simpan buku';
                $status = 200;
-               ProcessGenerate::dispatch($book);
+            //    ProcessGenerate::dispatch($book);
            }
        } catch (\Exception $e) {
             DB::rollback();
@@ -108,16 +140,20 @@ class BookService {
                 throw new \Exception('Gagal simpan buku');
            }
            if ($error === 0) {
-               DB::commit();
-               $message = 'Berhasil edit buku';
-               $status = 200;
-               if($request->file('file')){
+                if($request->file('file')){
                     if (Storage::exists('public/' .$file_lama)) {
                         Storage::delete('public/' .$file_lama);
                         Storage::deleteDirectory('public/' .$book->folder);
                     }
-                    ProcessGenerate::dispatch($book);
-               }
+                    $page = BookService::set_page($request->pages);
+                    foreach ($page as $value) {
+                            ProcessGenerate::dispatch($book,$value);
+                    }
+                }
+               DB::commit();
+               $message = 'Berhasil edit buku';
+               $status = 200;
+
            }
        } catch (\Exception $e) {
             DB::rollback();
