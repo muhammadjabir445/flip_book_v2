@@ -29,12 +29,19 @@ class BookController extends Controller
         $book = Book::where('kode_buku',$kode)->first();
         return new BookBook($book);
     }
+
+    public function books_list(Request $request) {
+        $books = Book::with('deskripsi')
+        ->search($request)
+        ->where('status',1)
+        ->orderBy('judul_buku','ASC')
+        ->paginate(16);
+        return new BookCollection($books);
+    }
     public function index(Request $request)
     {
         $books = Book::with('deskripsi')
-        ->where('judul_buku','LIKE',"%$request->keyword%")
-        ->orWhere('penerbit','LIKE',"%$request->keyword%")
-        ->orWhere('kode_buku','LIKE',"%$request->keyword%")
+        ->search($request)
         ->paginate(10);
         return new BookCollection($books);
     }
@@ -71,13 +78,15 @@ class BookController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected function validasi($request,$id = null) {
-        $segment = \Request::segment(3) == 'create' ? 'required|mimes:pdf' : '';
+        $segment = \Request::segment(3) == 'create' ? 'required|mimes:pdf' : ($request->file('file') ? 'mimes:pdf' : '' );
+        $page = $request->file('file') ? 'required' : '';
         $id_book = $id ? ",$id" : "";
         $validator = \Validator::make($request->all(),[
             'penerbit' => 'required',
             'judul' => 'required',
-            'kode' => 'required|unique:books,kode_buku' . $id_book,
+            'kode' => 'required|regex:/^[a-zA-Z0-9]+$/|unique:books,kode_buku' . $id_book,
             'file' => "$segment",
+            'pages' => "$page",
             'deskripsi' => [function($attribute,$value,$field) {
                 $value = json_decode($value);
                 foreach ($value as $item) {
@@ -90,6 +99,10 @@ class BookController extends Controller
                     }
                 }
             }]
+        ],
+        [
+            'pages.required' => 'Harus menggunakan mozilla atau chrome',
+            'kode.regex' => 'Kode hanya boleh angka dan huruf'
         ]);
         return $validator;
     }

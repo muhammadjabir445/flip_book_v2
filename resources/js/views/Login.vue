@@ -44,7 +44,7 @@
                         label="password"
                         required
                         ></v-text-field>
-                        <small>Lupa password ?</small>
+                        <small ><router-link to="/reset-password"> Lupa password ?</router-link></small>
                         <br>
                         <br>
                         <v-btn

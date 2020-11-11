@@ -100,6 +100,10 @@ export default {
         },
         imageRegister(){
             return document.location.origin+'/register.jpg'
+        },
+
+        imagePassword(){
+            return document.location.origin+'/lupapassword.jpg'
         }
     },
     async beforeRouteEnter(to, from, next){

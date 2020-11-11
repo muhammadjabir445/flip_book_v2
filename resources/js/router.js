@@ -62,6 +62,12 @@ const router = new Router({
                 meta:{auth:true},
                 component : () => import('./views/books/view.vue')
             },
+            {
+                path:'books-list',
+                name:'book.list',
+                meta:{auth:true},
+                component : () => import('./views/books/list.vue')
+            }
 
 
         ]
@@ -77,6 +83,16 @@ const router = new Router({
         path: '/register',
         name: 'register',
         component:()=>import('./views/Register.vue')
+    },
+    {
+        path: '/reset-password',
+        name: 'reset-password',
+        component:()=>import('./views/password-reset.vue')
+    },
+    {
+        path: '/reset-password/:token',
+        name: 'reset-password.reset',
+        component:()=>import('./views/password-reset.vue')
     },
     {
         path: '/404',
