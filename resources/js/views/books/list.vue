@@ -7,6 +7,7 @@
             <v-card
              :style="border"
             tile
+             outlined
             >
                 <v-card-text class="text-center">
                      <v-text-field
@@ -26,10 +27,12 @@
                         >
                             <v-card
                             tile
-                            outlined
+
+                            to="my-book/activation"
+                            style="cursor:pointer"
                             >
                                 <v-img
-                                height="150"
+                                height="100%"
 
                                 :src="item.foto"
                                 ></v-img>
@@ -37,8 +40,8 @@
                                 <!-- <v-card-title>{{item.judul}}</v-card-title> -->
                                 <v-divider class="mx-4"></v-divider>
 
-                                <v-card-actions>
-                                 <small :color="color">{{item.judul}}</small>
+                                <v-card-actions align-center>
+                                 <small :color="color" style="font-weight:bold;margin: 0 auto" class="text-center">{{item.judul}}</small>
 
                                 </v-card-actions>
                             </v-card>

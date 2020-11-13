@@ -72,8 +72,9 @@ export default {
                     menu : ress.data.menu
                 })
                 localStorage.setItem('token', this.token);
-
+                if(ress.data.user.id_role == 25)  this.$router.push('/books-list')
                 this.$router.push('/dahsboard')
+
             })
             .catch((err) =>{
                 console.log(err.response)

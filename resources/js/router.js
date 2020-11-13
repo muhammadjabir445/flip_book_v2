@@ -24,7 +24,7 @@ const router = new Router({
             {
                 path: '/dahsboard',
                 name: 'dashboard',
-                component:()=>import('./views/index.vue'),
+                component:()=>import('./views/dashboard/index.vue'),
                 meta:{auth:true}
 
             },
@@ -127,7 +127,7 @@ router.beforeEach(async (to,from,next) => {
             if (store.getters['BeforeUrl/url'] || to.name !== 'login') {
                 router.push(store.getters['BeforeUrl/url'])
             } else {
-                router.push('/dahsboard')
+                router.push('/login')
             }
 
         }
