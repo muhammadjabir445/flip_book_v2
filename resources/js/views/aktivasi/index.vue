@@ -2,7 +2,7 @@
     <v-app>
         <Progress v-if="loading"/>
         <v-container v-if="!loading">
-            <BtnJudul text="User Management"/>
+            <BtnJudul text="Kode Aktivasi"/>
 
             <v-card
              :style="border"

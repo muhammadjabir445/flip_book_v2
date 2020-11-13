@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-container>
-            <BtnJudul text="Tambah Buku"/>
+            <BtnJudul text="Edit Buku"/>
 
             <v-card
             :style="border"
