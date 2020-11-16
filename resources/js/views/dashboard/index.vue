@@ -110,6 +110,7 @@
 <script>
 import BarChart from '../../components/external/BarChart'
 import middleware from '../../mixins/middleware'
+import store from '../../stores'
 export default {
     components:{
         BarChart
@@ -180,6 +181,15 @@ export default {
 
     created() {
         this.go()
+    },
+
+    beforeRouteEnter (to, from, next) {
+        let user = store.getters['auth/user']
+        if (user.id_role == 25) {
+            next('/books-list')
+        } else {
+            next()
+        }
     }
 }
 </script>

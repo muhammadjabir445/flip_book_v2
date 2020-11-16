@@ -7,7 +7,7 @@
             :startPage="pageNum"
             v-slot="flipbook"
             ref="flipbook"
-
+            style="margin:0px"
             >
             <div class="action-bar">
                 <!-- <left-icon
@@ -72,7 +72,7 @@
                     v-for="(item,index) in data.deskripsi"
                     :key="index"
                 >
-                    <v-card height="300px">
+                    <v-card>
                     <v-card-text v-html="item.deskripsi" style="position:relative">
 
 

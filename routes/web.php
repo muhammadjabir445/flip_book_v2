@@ -11,6 +11,9 @@
 |
 */
 Route::get('/test',function(){
+    $url = '/' . 'masterdata';
+    $url = \App\Models\Menu::where('url',$url)->first();
+    return $url->id;
     $now = \Carbon\Carbon::parse('2020-11-13');
     $before = \Carbon\Carbon::parse('2020-11-11 11:49:58');
     $selisi = $before->diffInHours($now,false);
@@ -22,6 +25,10 @@ Route::get('/test',function(){
     // $pdf = new Spatie\PdfToImage\Pdf($path . '\dummy.pdf');
     // $pdf->saveImage($path .'\test0.jpg');
 
+});
+Route::get('/',function() {
+    $buku = \App\Models\Book::inRandomOrder()->limit(16)->get();
+    return view('landing',['data'=>$buku]);
 });
 Route::get('/{any}',function(){
     return view('index');

@@ -23,7 +23,8 @@
                 tile
                 >
                     <v-img
-                    height="250"
+                    height="100%"
+
 
                     :src="item.foto"
                     ></v-img>

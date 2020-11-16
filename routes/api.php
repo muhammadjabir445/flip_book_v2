@@ -23,25 +23,30 @@ Route::post('/login', 'AuthJWT\AuthController@login');
 Route::post('/logout', 'AuthJWT\AuthController@logout');
 Route::post('/edit-profile','AuthJWT\AuthController@EditProfile');
 Route::get('/setting-color','Setting\SettingController@color');
-Route::get('/dahsboard','Dashboard\DashboadController@index');
+
 
 
 
 Route::middleware(['auth:api'])->group(function () {
-Route::get('/role-management','Role\RoleManagementController@index');
-Route::post('/role-management','Role\RoleManagementController@store');
-Route::get('/role-management/{id}/edit','Role\RoleManagementController@edit');
-Route::get('/books/{id}/status', 'Book\BookController@changeStatus');
-Route::get('/aktivasi/{id}/pdf','Aktivasi\AktivasiController@pdf');
-Route::get('/aktivasi/check','Aktivasi\AktivasiController@aktivasi_check');
-Route::get('/aktivasi/{kode}/aktive','Aktivasi\AktivasiController@aktivasi_active');
-Route::get('/my-book','Book\BookController@my_book');
-Route::get('/books-list','Book\BookController@books_list');
-Route::get('/my-book/{kode}/read','Book\BookController@my_book_read');
+    Route::get('/aktivasi/check','Aktivasi\AktivasiController@aktivasi_check');
+    Route::get('/aktivasi/{kode}/aktive','Aktivasi\AktivasiController@aktivasi_active');
+    Route::group(['middleware' => ['can:menu']], function () {
+        Route::get('/dahsboard','Dashboard\DashboadController@index');
+        Route::get('/role-management','Role\RoleManagementController@index');
+        Route::post('/role-management','Role\RoleManagementController@store');
+        Route::get('/role-management/{id}/edit','Role\RoleManagementController@edit');
+        Route::get('/books/{id}/status', 'Book\BookController@changeStatus');
+        Route::get('/aktivasi/{id}/pdf','Aktivasi\AktivasiController@pdf');
+        Route::get('/books-list','Book\BookController@books_list');
+        Route::get('/my-book','Book\BookController@my_book');
 
-Route::apiResource('aktivasi', 'Aktivasi\AktivasiController');
-Route::resource('masterdata', 'Masterdata\MasterdataController');
-Route::resource('menu', 'Menu\MenuController');
-Route::resource('users', 'Users\UsersController');
-Route::resource('books', 'Book\BookController');
+        Route::get('/my-book/{kode}/read','Book\BookController@my_book_read');
+
+        Route::apiResource('aktivasi', 'Aktivasi\AktivasiController');
+        Route::resource('masterdata', 'Masterdata\MasterdataController');
+        Route::resource('menu', 'Menu\MenuController');
+        Route::resource('users', 'Users\UsersController');
+        Route::resource('books', 'Book\BookController');
+    });
+
 });
