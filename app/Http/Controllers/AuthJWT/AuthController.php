@@ -160,7 +160,8 @@ class AuthController extends Controller
             'created_at' => \Carbon\Carbon::now()
         ]);
         $akun = AppUser::where('email',$request->email)->first();
-        // SendResetPassword::dispatch($akun);
+        // return $akun;
+        SendResetPassword::dispatch($akun,$token);
         return response()->json([
             'message' => 'Silakan Check Email Anda'
         ]);
