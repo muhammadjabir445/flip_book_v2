@@ -27,7 +27,7 @@ Route::get('/test',function(){
 
 });
 Route::get('/',function() {
-    $buku = \App\Models\Book::inRandomOrder()->limit(16)->get();
+    $buku = \App\Models\Book::inRandomOrder()->where('status',1)->limit(16)->get();
     return view('landing',['data'=>$buku]);
 });
 Route::get('/{any}',function(){
