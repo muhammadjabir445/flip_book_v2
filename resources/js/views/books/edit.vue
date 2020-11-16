@@ -74,17 +74,17 @@
                                     v-for="(item,index) in deskripsi"
                                     :key="index"
                                 >
-                                    <v-card height="300px">
+                                    <v-card>
                                     <v-card-text v-html="item.deskripsi" style="position:relative">
 
 
                                     </v-card-text>
                                     <div style="position:absolute;top:0px;right:0px;">
                                          <v-btn @click="edit(index)" depressed dark x-small color="success">
-                                                <v-icon dark>mdi-plus</v-icon>
+                                                <v-icon dark small>fal fa-pencil</v-icon>
                                         </v-btn>
                                          <v-btn @click="hapus(index)" depressed dark x-small color="red">
-                                                <v-icon dark>mdi-close</v-icon>
+                                                <v-icon dark small>fal fa-trash</v-icon>
                                         </v-btn>
                                     </div>
 

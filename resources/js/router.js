@@ -127,7 +127,7 @@ router.beforeEach(async (to,from,next) => {
             if (store.getters['BeforeUrl/url'] || to.name !== 'login') {
                 router.push(store.getters['BeforeUrl/url'])
             } else {
-                router.push('/login')
+                router.push('/dahsboard')
             }
 
         }

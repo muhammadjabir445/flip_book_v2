@@ -44,7 +44,9 @@ export default {
                     menu : ress.data.menu
                 })
                 localStorage.setItem('token', this.token);
-
+                if(ress.data.user.id_role === 25){
+                    this.$router.push('/books-list')
+                }
                 this.$router.push('/dahsboard')
             })
             .catch((err) =>{
@@ -132,21 +134,5 @@ export default {
         }
         next()
     },
-//    async beforeMount(){
-//        let token = localStorage.token
-//        if (token) {
-//            let config = {
-//                 headers: {
-//                 'Authorization': 'Bearer ' + token,
-//                 }
-//             }
-//             await this.axios.get('/me',config)
-//                 .then((ress) =>{
-//                     console.log(ress.data)
-//                 }
-//                     )
-//                 .catch((err) =>console.log(err))
-//        }
-//     }
 
 }
