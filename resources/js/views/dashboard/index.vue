@@ -84,7 +84,7 @@
                         <v-card
                         tile
                         >
-                            <BarChart :height="350" :chartdata="chartData" :options="options" />
+                            <LineChart :height="350" :chartdata="LineData" :options="options" v-if="loading"/>
                         </v-card>
                        </v-col>
                         <v-col cols="12"
@@ -109,11 +109,12 @@
 
 <script>
 import BarChart from '../../components/external/BarChart'
+import LineChart from '../../components/external/LineChart'
 import middleware from '../../mixins/middleware'
 import store from '../../stores'
 export default {
     components:{
-        BarChart
+        BarChart,LineChart
     },
     data() {
         return {
@@ -138,6 +139,28 @@ export default {
                         }
                     ],
                 },
+            LineData:
+            {
+            labels:[0],
+                datasets: [
+                    {
+                    label: 'Terpakai',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    data: [0]
+                    },
+                    {
+                    label: 'Belum Terpakai',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    data: [0]
+                    },
+
+                      {
+                    label: 'User',
+                    backgroundColor:'rgba(153, 102, 255, 0.2)',
+                    data: [0]
+                    }
+                ],
+            },
             options: {
                 scales: {
                     yAxes: [{
@@ -170,6 +193,12 @@ export default {
 
                      this.chartData.datasets[0].data.push(x.total_aktive)
                      this.chartData.datasets[1].data.push(x.total_nonaktive)
+
+                     this.LineData.labels.push(judul)
+
+                     this.LineData.datasets[0].data.push(x.total_aktive)
+                     this.LineData.datasets[1].data.push(x.total_nonaktive)
+                     this.LineData.datasets[2].data.push(x.total_user)
                 });
 
             })

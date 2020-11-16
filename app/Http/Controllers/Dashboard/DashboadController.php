@@ -18,7 +18,7 @@ class DashboadController extends Controller
         $total_aktivasi = Aktivasi::select(\DB::raw('sum(total_aktivasi) as totals'))->first();
         $kode = AktivasiDetail::join('aktivasis','aktivasis.id','=','aktivasi_details.id_aktivasi')
         ->join('books','books.id','=','aktivasis.id_buku')
-        ->select('books.judul_buku as judul',\DB::raw('count(if(aktivasi_details.status = 1, aktivasi_details.status, NULL)) as total_aktive,count(if(aktivasi_details.status = 0, aktivasi_details.status, NULL)) as total_nonaktive'))
+        ->select('books.judul_buku as judul',\DB::raw('count(if(aktivasi_details.status = 1, aktivasi_details.status, NULL)) as total_aktive,count(if(aktivasi_details.status = 0, aktivasi_details.status, NULL)) as total_nonaktive, count(if(aktivasi_details.id_user IS NOT NULL, aktivasi_details.id_user, NULL)) as total_user'))
         ->groupBy('judul')
         ->get();
 
