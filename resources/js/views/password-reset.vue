@@ -87,6 +87,16 @@
                     </v-form>
                     <div v-else>
                         <h2 v-html="pesan_success"></h2>
+                        <v-btn
+                        :color="color"
+                        class="mr-4 white--text"
+                        rounded
+                        block
+                        to="/login"
+                        depressed
+                        >
+                        Log-in
+                        </v-btn>
                     </div>
                 </v-container>
 

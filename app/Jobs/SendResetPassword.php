@@ -2,11 +2,13 @@
 
 namespace App\Jobs;
 
+use App\Mail\ResetPassword;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
 class SendResetPassword implements ShouldQueue
 {
@@ -17,9 +19,12 @@ class SendResetPassword implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    protected $data;
+    protected $token;
+    public function __construct($data,$token)
     {
-        //
+        $this->data = $data;
+        $this->token = $token;
     }
 
     /**
@@ -29,6 +34,6 @@ class SendResetPassword implements ShouldQueue
      */
     public function handle()
     {
-        //
+        Mail::to($this->data->email)->send(new ResetPassword($this->token));
     }
 }

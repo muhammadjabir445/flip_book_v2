@@ -29,7 +29,7 @@ Route::get('/test',function(){
 Route::get('/',function() {
     $buku = \App\Models\Book::inRandomOrder()->where('status',1)->limit(16)->get();
     return view('landing',['data'=>$buku]);
-});
+})->name('landing');
 Route::get('/{any}',function(){
     return view('index');
 })->where('any', '.*');
