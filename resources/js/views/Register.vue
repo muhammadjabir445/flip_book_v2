@@ -38,6 +38,22 @@
                         label="Name"
                         required
                         ></v-text-field>
+                           <div style="position:relative;width:100%">
+                            <v-text-field
+                            v-model="sekolah"
+                            :rules="nameRules"
+                            label="Sekolah"
+                            required
+                            @keyup="getSekolah"
+                            style="position:relative"
+                            >
+                            </v-text-field>
+                            <div class="list-barang" v-if="sekolahs.length > 0">
+                                <ul>
+                                    <li v-for="item in sekolahs" :key="item.sekolah" @click="select_sekolah(`${item.sekolah}`)">{{item.sekolah}}</li>
+                                </ul>
+                            </div>
+                        </div>
 
                         <v-text-field
                         v-model="email"
@@ -45,6 +61,8 @@
                         label="E-mail"
                         required
                         ></v-text-field>
+
+
 
                         <v-text-field
                         v-model="password"
@@ -102,7 +120,13 @@ import AuthMixin from '../mixins/AuthMixin'
 
 
 export default {
-    mixins:[AuthMixin]
+    mixins:[AuthMixin],
+    methods:{
+        select_sekolah(sekolah){
+            this.sekolah = sekolah
+            this.sekolahs = []
+        }
+    }
 }
 </script>
 
@@ -113,4 +137,30 @@ export default {
  .card-auth{
      margin: 0 auto;
  }
+
+    .list-barang{
+        background-color:white;
+        position:relative;
+        left:0px;
+        bottom:30px;
+        width:100%;
+        -webkit-box-shadow: 4px 6px 5px -4px rgba(0,0,0,0.75);
+        -moz-box-shadow: 4px 6px 5px -4px rgba(0,0,0,0.75);
+        box-shadow: 4px 6px 5px -4px rgba(0,0,0,0.75);
+        z-index: 100;
+    }
+    .list-barang ul li {
+
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 10px;
+    }
+    .list-barang ul {
+        list-style: none;
+        padding: 0px;
+    }
+    .list-barang ul li:hover {
+        cursor:pointer;
+         background-color:rgb(233, 233, 233);
+    }
 </style>
