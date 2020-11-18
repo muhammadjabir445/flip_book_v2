@@ -14,7 +14,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register','password_reset','password_reset_action']]);
+        $this->middleware('auth:api', ['except' => ['login','register','password_reset','password_reset_action','get_sekolah']]);
     }
 
     public function login(Request $request)
@@ -31,7 +31,8 @@ class AuthController extends Controller
     public function register(Request $request){
         $validator = \Validator::make($request->all(), [
             'email' => 'required|unique:users,email',
-            'password' => 'required'
+            'password' => 'required',
+            'sekolah' =>'required'
         ],[
             '*.unique' => 'Email Sudah Tersedia',
             '*.required' => ':attribute tidak boleh kosong'
@@ -45,11 +46,17 @@ class AuthController extends Controller
         $user = new \App\User;
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->sekolah = \Str::upper($request->sekolah);
         $user->password = \Hash::make($request->password);
         $user->id_role = $request->role ? $request->role : 25;
         $user->save();
 
         return $this->login($request);
+    }
+
+    public function get_sekolah(Request $request) {
+        $user = \App\User::select(\DB::raw('DISTINCT sekolah'))->where('sekolah','LIKE',"%$request->keyword%")->where('sekolah','!=',NULL)->get();
+        return $user;
     }
 
     /**

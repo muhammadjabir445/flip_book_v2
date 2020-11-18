@@ -13,6 +13,8 @@ export default {
       ],
       name:'',
       email: '',
+      sekolah:'',
+      sekolahs: [],
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
@@ -65,6 +67,7 @@ export default {
             data.append('email',this.email)
             data.append('password',this.password)
             data.append('name',this.name)
+            data.append('sekolah',this.sekolah)
             await this.axios.post('/register',data)
             .then((ress) => {
                 console.log(ress)
@@ -88,7 +91,15 @@ export default {
                 this.pesan_error = err.response.data.message
             })
             this.loading = false
-        }
+        },
+
+        getSekolah(){
+            this.axios.get('get-sekolah?keyword=' + this.sekolah)
+            .then((ress) => {
+                this.sekolahs = ress.data
+            })
+            .catch((err) => console.log(err))
+        },
     },
     computed: {
         ...mapGetters({
