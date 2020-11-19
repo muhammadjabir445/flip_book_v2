@@ -24,15 +24,16 @@
                         md="3"
                         v-for="item in data"
                         :key="item.id"
+                        style="height:420px !important"
                         >
                             <v-card
                             tile
-
+                            height="100%"
                             to="my-book/activation"
                             style="cursor:pointer"
                             >
                                 <v-img
-                                height="100%"
+
 
                                 :src="item.foto"
                                 ></v-img>
@@ -40,7 +41,7 @@
                                 <!-- <v-card-title>{{item.judul}}</v-card-title> -->
                                 <v-divider class="mx-4"></v-divider>
 
-                                <v-card-actions align-center>
+                                <v-card-actions align-center height="100%">
                                  <small :color="color" style="font-weight:bold;margin: 0 auto" class="text-center">{{item.judul}}</small>
 
                                 </v-card-actions>
