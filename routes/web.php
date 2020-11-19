@@ -11,13 +11,15 @@
 |
 */
 Route::get('/test',function(){
-    $url = '/' . 'masterdata';
-    $url = \App\Models\Menu::where('url',$url)->first();
-    return $url->id;
-    $now = \Carbon\Carbon::parse('2020-11-13');
-    $before = \Carbon\Carbon::parse('2020-11-11 11:49:58');
-    $selisi = $before->diffInHours($now,false);
-    return $selisi;
+    // $url = '/' . 'masterdata';
+    // $url = \App\Models\Menu::where('url',$url)->first();
+    // return $url->id;
+    // $now = \Carbon\Carbon::parse('2020-11-13');
+    // $before = \Carbon\Carbon::parse('2020-11-11 11:49:58');
+    // $selisi = $before->diffInHours($now,false);
+    return response()->json([
+        'message' => 'test'
+    ],200);
     // $user = \App\User::findOrFail(1);
     // $user->password = \Hash::make(123456);
     // $user->save();
