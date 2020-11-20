@@ -15,12 +15,15 @@
         >
             <v-col
             cols="12"
-            md="4"
+            md="3"
             v-for="item in data"
             :key="item.id"
+             style="min-height:420px !important"
             >
                 <v-card
                 tile
+
+                height="100%"
                 >
                     <v-img
                     height="100%"

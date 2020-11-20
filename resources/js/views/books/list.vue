@@ -24,7 +24,7 @@
                         md="3"
                         v-for="item in data"
                         :key="item.id"
-                        style="height:420px !important"
+                        style="min-height:420px !important"
                         >
                             <v-card
                             tile
