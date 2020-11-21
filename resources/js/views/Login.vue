@@ -7,7 +7,7 @@
             align="center"
             >
                 <v-col
-                class="col-12 col-sm-6"
+                class="col-12 col-sm-6 pl-4"
                 >
                     <img :src="imageLogin" width="100%" alt="">
                 </v-col>

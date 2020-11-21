@@ -21,7 +21,8 @@ export default {
     computed:{
         ...mapGetters({
             color:'color/color'
-        })
+        }),
+
     },
     methods:{
         go() {

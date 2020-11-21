@@ -115,7 +115,7 @@ export default {
             color: 'color/color'
         }),
         imageLogin(){
-            return document.location.origin+'/login.jpg'
+            return document.location.origin+'/Buku-online4.PNG'
         },
         imageRegister(){
             return document.location.origin+'/register.jpg'

@@ -17,7 +17,7 @@
                             <v-text-field
                                 v-model="keyword"
                                 label="Pencarian"
-                                v-on:keyup ="go(page)"
+                                v-on:keyup="go(page)"
                                 :color="color"
                             ></v-text-field>
                             </v-col>
