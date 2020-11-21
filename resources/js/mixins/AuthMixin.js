@@ -8,8 +8,13 @@ export default {
       valid: false,
       password: '',
       nameRules: [
+        v => !!v || 'Name is required',
+      ],
+      sekolahRules: [
+        v => !!v || 'Sekolah is required',
+      ],
+      passwordRules: [
         v => !!v || 'Password is required',
-
       ],
       name:'',
       email: '',

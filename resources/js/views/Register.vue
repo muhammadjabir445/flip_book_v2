@@ -41,7 +41,7 @@
                            <div style="position:relative;width:100%">
                             <v-text-field
                             v-model="sekolah"
-                            :rules="nameRules"
+                            :rules="sekolahRules"
                             label="Sekolah"
                             required
                             @keyup="getSekolah"
@@ -66,7 +66,7 @@
 
                         <v-text-field
                         v-model="password"
-                        :rules="nameRules"
+                        :rules="passwordRules"
                         type="password"
                         label="password"
                         required
