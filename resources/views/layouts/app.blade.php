@@ -3,11 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="description" content="buku-online.id merupakan perusahaan penerbit buku cetak dan buku online digital.   ">
+    <meta name="keywords" content="Penerbit buku sekolah, buku online digital sekolah, buku sekolah">
+    <meta name="author" content="PT LINGKAR SOLUSI MANDIRI">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>CV Eka Prima Mandiri </title>
+    <title>Buku Online Digital </title>
 
     <!-- Scripts -->
 
@@ -80,7 +82,9 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{asset('logoeka.png')}}" width="180px" class="img img-responsive">
+                    <img src="{{asset('logoeka.jpeg')}}" width="180px" class="img img-responsive">
+ 		    <img src="{{asset('bmmlogo.png')}}" width="180px" class="img img-responsive">
+
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

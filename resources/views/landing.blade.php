@@ -5,15 +5,14 @@
     <div class="container landing">
         <div class="row">
             <div class="col-12 col-md-6">
-                <h1>Buku Digital Eka Prima Mandiri</h1>
+                <h1>Buku Online Digital </h1>
                 <br>
-                <h3>Dapatkan buku digital yang dapat kalian baca dimanapun dan kapanpun, tanpa harus ribet.
-                </h3>
+                <h3>Buku adalah sumber belajar. Bawa buku perkaya ilmu</h3>
                 <br>
                 <button type="button" onclick="window.location.href='/login'" style="border-radius:50px" class="btn btn-primary">Baca Sekarang</button>
             </div>
             <div class="col-12 col-md-6">
-                <img src="{{asset('buku.jpg')}}" alt="" height="100%" width="100%">
+                <img src="{{asset('Buku-online1.PNG')}}" alt="" height="100%" width="100%">
             </div>
         </div>
     </div>
@@ -31,9 +30,9 @@
             <div class="card mt-1 mr-2 ml-2 mb-1" style="width: 12rem; -webkit-box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.75);
             -moz-box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.75);
             box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.75); border-radius:0px;border:none">
-                <img src="{{asset('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")}}" width="100%" height="100%" class="card-img-top" alt="{{$item->judul_buku}}">
+                <img src="{{asset('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")}}"  width="100%" height="270pv" class="card-img-top " alt="{{$item->judul_buku}}">
                 <div class="card-body">
-                  <h5 class="card-title text-center">{{$item->judul_buku}}</h5>
+                  <div class="card-title text-center w-auto " style="font-size:90%;">{{$item->judul_buku}}</div>
                 </div>
             </div>
             @endforeach
