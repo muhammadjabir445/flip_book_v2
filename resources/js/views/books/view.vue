@@ -22,12 +22,9 @@
             >
                 <v-card
                 tile
-
                 height="100%"
                 >
                     <v-img
-                    height="100%"
-
 
                     :src="item.foto"
                     ></v-img>
