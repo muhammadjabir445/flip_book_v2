@@ -12,7 +12,7 @@
                     <v-container>
                         <v-row justify="center" align="center">
                             <v-col
-                                cols="6"
+                                cols="3"
                             >
                             <v-text-field
                                 v-model="keyword"
@@ -20,6 +20,18 @@
                                 v-on:keyup="go(page)"
                                 :color="color"
                             ></v-text-field>
+                            </v-col>
+
+                            <v-col cols="3">
+                                <v-select
+                                v-model="id_categori"
+                                :items="categori"
+
+                                label="Kategori"
+                                item-text="description"
+                                item-value="id"
+                                @change="go(page)"
+                                ></v-select>
                             </v-col>
 
                             <v-col
@@ -42,6 +54,7 @@
                             <th class="text-left">Judul</th>
                             <th class="text-left">Penerbit</th>
                             <th class="text-left">Total Pages</th>
+                            <th class="text-left">Kategori</th>
                             <th class="text-left">Status</th>
                             <th class="text-left">Aksi</th>
                             </tr>
@@ -56,6 +69,7 @@
                                 <td class="text-left">{{item.judul}}</td>
                                 <td class="text-left">{{item.penerbit}}</td>
                                 <td class="text-left">{{item.pages}}</td>
+                                <td class="text-left">{{item.categori}}</td>
                                 <td class="text-left">
                                 <v-btn :loading="item.loading" :color="item.status == 1 ? 'success' : 'red'" class="white--text" v-on:click="changeStatus(item.id)" x-small >
                                     {{ item.status == 1 ? 'Publish' : 'No-Publish'}}
@@ -114,9 +128,11 @@
 <script>
 
 import CrudMixin from '../../mixins/CrudMixin'
+import BookMixins from '../../mixins/BookMixins'
+
 export default {
     name: 'users',
-    mixins:[CrudMixin],
+    mixins:[CrudMixin,BookMixins],
     methods: {
         async changeStatus(id) {
             let data = this.data.find((x) => x.id === id)
@@ -141,7 +157,30 @@ export default {
             })
             data.loading = false
             this.data.splice(index,1,data)
-        }
+        },
+        async go(page = null){
+            let url = this.url
+            this.page = page == null ? this.page : page
+            if(this.page > 1) {
+                url = url + '?page=' +this.page + "&keyword=" + this.keyword
+            }else{
+                url = url + "?keyword=" + this.keyword
+            }
+            url = url + '&category=' + this.id_categori
+            await this.axios.get(url,this.config)
+            .then((ress)=>{
+                this.data = ress.data.data
+                this.page = ress.data.current_page ? ress.data.current_page : ress.data.meta.current_page
+                this.lengthpage = ress.data.last_page ? ress.data.last_page : ress.data.meta.last_page
+            })
+            .catch((err)=>{
+                console.log(err.response)
+            })
+            this.loading = false
+        },
+    },
+    created(){
+        this.get_categori()
     }
 }
 </script>

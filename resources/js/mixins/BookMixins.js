@@ -17,6 +17,13 @@ export default {
         penerbit:"",
         pdf_url:'',
         totalPage:'',
+        categori:[
+            {
+                id:'',
+                description:'all'
+            }
+        ],
+        id_categori:'',
         nameRules: [
           v => !!v || 'Tidak Boleh Kosong',
         ],
@@ -91,6 +98,23 @@ export default {
             //Step 3:Read the file as ArrayBuffer
             await fileReader.readAsArrayBuffer(this.file);
         },
+
+        get_categori(){
+            this.axios.get('books/category',this.config)
+            .then((ress) => {
+                if (window.location.pathname == '/books' || window.location.pathname == '/books-list') {
+                    ress.data.forEach(element => {
+                        this.categori.push({
+                            id:element.id,
+                            description:element.description,
+                        })
+                    });
+                } else {
+                    this.categori = ress.data
+                }
+
+            })
+        }
 
     },
 

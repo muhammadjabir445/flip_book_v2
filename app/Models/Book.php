@@ -10,9 +10,19 @@ class Book extends Model
         return $this->hasMany('App\Models\Deskripsi','id_buku');
     }
 
+    public function category() {
+        return $this->belongsTo('App\Models\MasterDataDetail','id_categori');
+    }
+
     public function scopeSearch($q, $request) {
         return $q->where('judul_buku','LIKE',"%$request->keyword%")
         ->orWhere('penerbit','LIKE',"%$request->keyword%")
         ->orWhere('kode_buku','LIKE',"%$request->keyword%");
+    }
+
+    public function scopeCategori($q, $request) {
+        if ($request->category) {
+            return $q->where('id_categori',$request->category);
+        }
     }
 }
