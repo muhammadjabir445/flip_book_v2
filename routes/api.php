@@ -41,6 +41,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/my-book','Book\BookController@my_book');
 
         Route::get('/my-book/{kode}/read','Book\BookController@my_book_read');
+        Route::get('books/category', 'Book\BookController@category');
 
         Route::apiResource('aktivasi', 'Aktivasi\AktivasiController');
         Route::resource('masterdata', 'Masterdata\MasterdataController');

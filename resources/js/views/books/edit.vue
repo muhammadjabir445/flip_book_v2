@@ -38,6 +38,16 @@
                         required
                         ></v-text-field>
 
+                         <v-select
+                            v-model="id_categori"
+                            :items="categori"
+                            :rules="[v => !!v || 'Item is required']"
+                            label="Kategori"
+                            item-text="description"
+                            item-value="id"
+                            required
+                        ></v-select>
+
                         <p id="dataPages" style="display:none">{{totalPage}}</p>
 
                         <input type="file" id="foto_profile" ref="foto_profile" accept="" @change="eventChange"> <small>Kosongkan jika tidak ganti file</small>
@@ -199,6 +209,7 @@ export default {
             data.append('file',this.file)
             data.append('kode',this.kode)
             data.append('pages',this.totalPage)
+            data.append('id_categori',this.id_categori)
             data.append('deskripsi' , JSON.stringify(this.deskripsi))
             data.append('_method','PUT')
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Book\Book as BookBook;
 use App\Http\Resources\Book\BookCollection;
 use App\Models\Book;
+use App\Models\MasterDataDetail;
 use App\Services\BookService;
 use Illuminate\Http\Request;
 
@@ -40,8 +41,9 @@ class BookController extends Controller
     }
     public function index(Request $request)
     {
-        $books = Book::with('deskripsi')
+        $books = Book::with('deskripsi','category')
         ->search($request)
+        ->categori($request)
         ->paginate(10);
         return new BookCollection($books);
     }
@@ -65,6 +67,11 @@ class BookController extends Controller
 
         return new BookCollection($book);
 
+    }
+
+    public function category(){
+        $kategori = MasterDataDetail::where('id_master_data',13)->get();
+        return $kategori;
     }
 
     public function changeStatus($id){

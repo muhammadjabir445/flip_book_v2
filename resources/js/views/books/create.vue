@@ -38,6 +38,16 @@
                         required
                         ></v-text-field>
 
+                        <v-select
+                            v-model="id_categori"
+                            :items="categori"
+                            :rules="[v => !!v || 'Item is required']"
+                            label="Kategori"
+                            item-text="description"
+                            item-value="id"
+                            required
+                        ></v-select>
+
                         <p id="dataPages"></p>
                         <input type="file" id="foto_profile" ref="foto_profile" accept="" @change="eventChange">
                         <br>
@@ -198,6 +208,7 @@ export default {
             data.append('penerbit',this.penerbit)
             data.append('file',this.file)
             data.append('kode',this.kode)
+            data.append('id_categori',this.id_categori)
             data.append('pages',this.totalPage)
             data.append('deskripsi' , JSON.stringify(this.deskripsi))
 
@@ -238,6 +249,10 @@ export default {
 
 
 
+    },
+
+    created(){
+        this.get_categori()
     }
 
 }
