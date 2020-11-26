@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
 const workboxPlugin = require('workbox-webpack-plugin');
-// var LiveReloadPlugin = require('webpack-livereload-plugin');
+var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 
 /*

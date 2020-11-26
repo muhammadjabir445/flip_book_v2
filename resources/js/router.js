@@ -63,7 +63,7 @@ const router = new Router({
                 component : () => import('./views/books/view.vue')
             },
             {
-                path:'books-list',
+                path:'books-list/:category',
                 name:'book.list',
                 meta:{auth:true},
                 component : () => import('./views/books/list.vue')
