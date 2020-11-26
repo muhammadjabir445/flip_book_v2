@@ -21,12 +21,9 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
-{{-- <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
-<link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css"> --}}
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @laravelPWA
+  
     <style>
         section{
             font-family: 'Oswald', sans-serif;
@@ -78,7 +75,9 @@
             margin: auto
         }
     </style>
+@laravelPWA
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
