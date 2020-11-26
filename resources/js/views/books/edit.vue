@@ -260,8 +260,9 @@ export default {
 
     },
 
-    created(){
-        this.go()
+    async created(){
+        await this.go()
+        this.get_categori()
     }
 
 }

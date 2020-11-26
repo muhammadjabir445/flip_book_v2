@@ -128,11 +128,21 @@
 <script>
 
 import CrudMixin from '../../mixins/CrudMixin'
-import BookMixins from '../../mixins/BookMixins'
 
 export default {
     name: 'users',
-    mixins:[CrudMixin,BookMixins],
+    data() {
+        return {
+            categori:[
+            {
+                id:'',
+                description:'all'
+            }
+            ],
+            id_categori:''
+        }
+    },
+    mixins:[CrudMixin],
     methods: {
         async changeStatus(id) {
             let data = this.data.find((x) => x.id === id)
@@ -159,7 +169,6 @@ export default {
             this.data.splice(index,1,data)
         },
         async go(page = null){
-            this.loading = true
 
             let url = this.url
             this.page = page == null ? this.page : page
@@ -180,6 +189,22 @@ export default {
             })
             this.loading = false
         },
+        get_categori(){
+            this.axios.get('books/category',this.config)
+            .then((ress) => {
+                if (window.location.pathname == '/books' || window.location.pathname == '/books-list') {
+                    ress.data.forEach(element => {
+                        this.categori.push({
+                            id:element.id,
+                            description:element.description,
+                        })
+                    });
+                } else {
+                    this.categori = ress.data
+                }
+
+            })
+        }
     },
     created(){
         this.get_categori()
