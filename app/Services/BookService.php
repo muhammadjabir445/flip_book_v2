@@ -69,13 +69,14 @@ class BookService {
                 throw new \Exception('Gagal simpan buku');
            }
            if ($error === 0) {
+
+               DB::commit();
+               $message = 'Berhasil simpan buku';
+               $status = 200;
                $page = BookService::set_page($request->pages);
                foreach ($page as $value) {
                     ProcessGenerate::dispatch($book,$value);
                }
-               DB::commit();
-               $message = 'Berhasil simpan buku';
-               $status = 200;
             //    ProcessGenerate::dispatch($book);
            }
        } catch (\Exception $e) {

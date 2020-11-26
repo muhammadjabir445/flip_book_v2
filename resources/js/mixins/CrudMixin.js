@@ -90,9 +90,9 @@ export default {
 
     },
 
-    created(){
+    async created(){
         this.url = window.location.pathname
-        this.go()
+        await this.go()
         this.urlcreate = this.url + '/create'
     }
 }

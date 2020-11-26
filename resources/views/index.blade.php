@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="{{asset('mini-logo.PNG')}}">
-<meta name="description" content="buku-online.id merupakan perusahaan pener$
-    <meta name="keywords" content="Penerbit buku sekolah, buku online digital s$
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="buku-online.id merupakan perusahaan penerbit buku cetak dan buku online digital.   ">
+    <meta name="keywords" content="Penerbit buku sekolah, buku online digital sekolah, buku sekolah">
     <meta name="author" content="PT LINGKAR SOLUSI MANDIRI">
-        <meta name="google-site-verification" content="Un3gfrcGjSq6LbTGjWdrJkkj$
+	<meta name="google-site-verification" content="Un3gfrcGjSq6LbTGjWdrJkkjgNuxUC8IUdz8baw6ZxE" >
     <!-- CSRF Token -->
 
     <title>BUKU DIGITAL - CV Eka Prima Mandiri</title>

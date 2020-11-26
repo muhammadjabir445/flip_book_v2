@@ -44,6 +44,7 @@ class BookController extends Controller
         $books = Book::with('deskripsi','category')
         ->search($request)
         ->categori($request)
+        ->orderBy('judul_buku','ASC')
         ->paginate(10);
         return new BookCollection($books);
     }
