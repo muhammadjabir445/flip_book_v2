@@ -23,6 +23,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @laravelPWA
     <style>
         section{
             font-family: 'Oswald', sans-serif;
