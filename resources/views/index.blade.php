@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="{{asset('mini-logo.PNG')}}">
+<meta name="description" content="buku-online.id merupakan perusahaan pener$
+    <meta name="keywords" content="Penerbit buku sekolah, buku online digital s$
+    <meta name="author" content="PT LINGKAR SOLUSI MANDIRI">
+        <meta name="google-site-verification" content="Un3gfrcGjSq6LbTGjWdrJkkj$
+    <!-- CSRF Token -->
+
     <title>BUKU DIGITAL - CV Eka Prima Mandiri</title>
     <link href="{{asset('fontawesome/css/all.css')}}"
     rel="stylesheet">

@@ -6,6 +6,7 @@
     <meta name="description" content="buku-online.id merupakan perusahaan penerbit buku cetak dan buku online digital.   ">
     <meta name="keywords" content="Penerbit buku sekolah, buku online digital sekolah, buku sekolah">
     <meta name="author" content="PT LINGKAR SOLUSI MANDIRI">
+	<meta name="google-site-verification" content="Un3gfrcGjSq6LbTGjWdrJkkjgNuxUC8IUdz8baw6ZxE" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
