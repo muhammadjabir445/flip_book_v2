@@ -37,7 +37,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/role-management/{id}/edit','Role\RoleManagementController@edit');
         Route::get('/books/{id}/status', 'Book\BookController@changeStatus');
         Route::get('/aktivasi/{id}/pdf','Aktivasi\AktivasiController@pdf');
-        Route::get('/books-list','Book\BookController@books_list');
+        Route::get('/books-list/{category}','Book\BookController@books_list');
         Route::get('/my-book','Book\BookController@my_book');
 
         Route::get('/my-book/{kode}/read','Book\BookController@my_book_read');

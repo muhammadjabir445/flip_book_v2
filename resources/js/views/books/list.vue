@@ -65,7 +65,32 @@ export default {
     name: 'books-list',
     mixins:[CrudMixin],
     methods: {
-    }
+        async go(page = null){
+            this.loading = true
+            let url = 'books-list/'+this.$route.params.category
+            this.page = page == null ? this.page : page
+
+            url = url + '?page=' +this.page + "&keyword=" + this.keyword
+
+            await this.axios.get(url,this.config)
+            .then((ress)=>{
+                this.data = ress.data.data
+                this.page = ress.data.current_page ? ress.data.current_page : ress.data.meta.current_page
+                this.lengthpage = ress.data.last_page ? ress.data.last_page : ress.data.meta.last_page
+            })
+            .catch((err)=>{
+                console.log(err.response)
+            })
+            this.loading = false
+        },
+
+    },
+    watch:{
+    $route (to, from){
+            this.go()
+        }
+    },
+
 }
 </script>
 

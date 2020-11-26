@@ -31,11 +31,15 @@ class BookController extends Controller
         return new BookBook($book);
     }
 
-    public function books_list(Request $request) {
-        $books = Book::with('deskripsi')
+    public function books_list(Request $request,$category) {
+        $books = Book::with('category')
         ->search($request)
         ->where('status',1)
+        ->whereHas('category',function($q) use($category) {
+            return $q->where('description',$category);
+        })
         ->orderBy('judul_buku','ASC')
+
         ->paginate(16);
         return new BookCollection($books);
     }
