@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
-var LiveReloadPlugin = require('webpack-livereload-plugin');
+const workboxPlugin = require('workbox-webpack-plugin');
+// var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 
 /*
@@ -16,10 +17,10 @@ var LiveReloadPlugin = require('webpack-livereload-plugin');
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css').sourceMaps();
 
-mix.webpackConfig({
-    plugins: [
-        new LiveReloadPlugin()
-    ]
-});
+// mix.webpackConfig({
+//     plugins: [
+//         new LiveReloadPlugin()
+//     ]
+// });
 
 

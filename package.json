@@ -1,41 +1,43 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "npm run development -- --watch",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-    },
-    "devDependencies": {
-        "axios": "^0.19.2",
-        "bootstrap": "^4.5.2",
-        "cross-env": "^5.1",
-        "jquery": "^3.5.1",
-        "laravel-mix": "^4.0.7",
-        "lodash": "^4.17.20",
-        "popper.js": "^1.16.1",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.27.0",
-        "sass-loader": "7.*",
-        "vue": "^2.6.12",
-        "vue-template-compiler": "^2.6.12",
-        "webpack-livereload-plugin": "^1.2.0"
-    },
-    "dependencies": {
-        "@ckeditor/ckeditor5-build-classic": "^23.1.0",
-        "@ckeditor/ckeditor5-vue": "^1.0.3",
-        "chart.js": "^2.9.4",
-        "downloadjs": "^1.4.7",
-        "flipbook-vue": "^0.10.1",
-        "pdfjs-dist": "^2.5.207",
-        "tiptap-vuetify": "^2.24.0",
-        "vue-chartjs": "^3.5.1",
-        "vue-material-design-icons": "^4.10.0",
-        "vue-router": "^3.4.6",
-        "vuetify": "^2.3.13",
-        "vuex": "^3.5.1"
-    }
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "watch-poll": "npm run watch -- --watch-poll"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^23.1.0",
+    "@ckeditor/ckeditor5-vue": "^1.0.3",
+    "chart.js": "^2.9.4",
+    "downloadjs": "^1.4.7",
+    "flipbook-vue": "^0.10.1",
+    "pdfjs-dist": "^2.5.207",
+    "register-service-worker": "^1.7.1",
+    "tiptap-vuetify": "^2.24.0",
+    "vue-chartjs": "^3.5.1",
+    "vue-material-design-icons": "^4.11.0",
+    "vue-router": "^3.4.9",
+    "vuetify": "^2.3.19",
+    "vuex": "^3.6.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-pwa": "^4.5.9",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.3",
+    "cross-env": "^5.1",
+    "jquery": "^3.5.1",
+    "laravel-mix": "^4.0.7",
+    "lodash": "^4.17.20",
+    "popper.js": "^1.16.1",
+    "resolve-url-loader": "^2.3.1",
+    "sass": "^1.29.0",
+    "sass-loader": "7.*",
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12",
+    "webpack-livereload-plugin": "^1.2.0"
+  }
 }
