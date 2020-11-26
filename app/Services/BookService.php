@@ -37,11 +37,11 @@ class BookService {
         return $page;
     }
     public static function store($request) {
-
+        DB::beginTransaction();
+        $error = 0;
        try {
            $kode = \Str::lower($request->kode);
-            DB::beginTransaction();
-            $error = 0;
+
            $book = new Book();
            $book->judul_buku = $request->judul;
            $book->kode_buku = $kode;
@@ -105,9 +105,10 @@ class BookService {
 
     public static function update($request,$id) {
         $file_lama='';
+        DB::beginTransaction();
+        $error = 0;
        try {
-            DB::beginTransaction();
-            $error = 0;
+
            $kode = \Str::lower($request->kode);
            $book = Book::findOrFail($id);
            $book->judul_buku = $request->judul;
