@@ -30,11 +30,9 @@ export default {
         async go(page = null){
             let url = this.url
             this.page = page == null ? this.page : page
-            if(this.page > 1) {
-                url = url + '?page=' +this.page + "&keyword=" + this.keyword
-            }else{
-                url = url + "?keyword=" + this.keyword
-            }
+
+            url = url + '?page=' +this.page + "&keyword=" + this.keyword
+
             await this.axios.get(url,this.config)
             .then((ress)=>{
                 this.data = ress.data.data
@@ -64,11 +62,7 @@ export default {
                     pesan:ress.data.message,
                     status:true
                 })
-                let index = this.data.map(x => {
-                    return x.id
-                }).indexOf(this.idDelete)
-
-                this.data.splice(index,1)
+                this.go(this.page)
                 this.dialog = false
             })
             .catch((err)=>{

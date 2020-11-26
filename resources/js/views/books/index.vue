@@ -172,11 +172,9 @@ export default {
 
             let url = this.url
             this.page = page == null ? this.page : page
-            if(this.page > 1) {
-                url = url + '?page=' +this.page + "&keyword=" + this.keyword
-            }else{
-                url = url + "?keyword=" + this.keyword
-            }
+
+            url = url + '?page=' +this.page + "&keyword=" + this.keyword
+
             url = url + '&category=' + this.id_categori
             await this.axios.get(url,this.config)
             .then((ress)=>{
