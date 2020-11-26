@@ -159,6 +159,8 @@ export default {
             this.data.splice(index,1,data)
         },
         async go(page = null){
+            this.loading = true
+
             let url = this.url
             this.page = page == null ? this.page : page
             if(this.page > 1) {
