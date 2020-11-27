@@ -25,9 +25,10 @@ Route::post('/edit-profile','AuthJWT\AuthController@EditProfile');
 Route::get('/setting-color','Setting\SettingController@color');
 
 Route::get('/get-sekolah','AuthJWT\AuthController@get_sekolah');
+Route::resource('mencoba', 'Users\UsersController');
 
 Route::middleware(['auth:api'])->group(function () {
-    
+
 	Route::get('/aktivasi/check','Aktivasi\AktivasiController@aktivasi_check');
     	Route::get('/aktivasi/{kode}/aktive','Aktivasi\AktivasiController@aktivasi_active');
 

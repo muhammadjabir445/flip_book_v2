@@ -28,6 +28,11 @@ const router = new Router({
                 meta:{auth:true}
 
             },
+            {
+                path: '/mencoba',
+                name: 'mencoba',
+                component:()=>import('./views/mencoba/index.vue')
+            },
 
             UserRouter,
             MasterDataRouter,
@@ -74,6 +79,7 @@ const router = new Router({
 
     },
 
+
     {
         path: '/login',
         name: 'login',
@@ -98,6 +104,7 @@ const router = new Router({
         path: '/404',
         name: 'notfound',
     },
+
 
     {
       path: '*',
