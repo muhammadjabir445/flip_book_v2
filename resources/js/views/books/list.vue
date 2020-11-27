@@ -2,7 +2,7 @@
     <v-app>
         <Progress v-if="loading"/>
         <v-container v-if="!loading">
-            <BtnJudul text="List Buku CV EKA PRIMA MANDIRI"/>
+            <BtnJudul text="List Buku Online Digital"/>
 
             <v-card
              :style="border"
