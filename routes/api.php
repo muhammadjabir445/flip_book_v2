@@ -26,11 +26,12 @@ Route::get('/setting-color','Setting\SettingController@color');
 
 Route::get('/get-sekolah','AuthJWT\AuthController@get_sekolah');
 
-
 Route::middleware(['auth:api'])->group(function () {
-    Route::get('/aktivasi/check','Aktivasi\AktivasiController@aktivasi_check');
-    Route::get('/aktivasi/{kode}/aktive','Aktivasi\AktivasiController@aktivasi_active');
-    Route::group(['middleware' => ['can:menu']], function () {
+    
+	Route::get('/aktivasi/check','Aktivasi\AktivasiController@aktivasi_check');
+    	Route::get('/aktivasi/{kode}/aktive','Aktivasi\AktivasiController@aktivasi_active');
+
+    	Route::group(['middleware' => ['can:menu']], function () {
         Route::get('/dahsboard','Dashboard\DashboadController@index');
         Route::get('/role-management','Role\RoleManagementController@index');
         Route::post('/role-management','Role\RoleManagementController@store');
