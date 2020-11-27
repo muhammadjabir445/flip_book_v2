@@ -48,7 +48,6 @@ export default {
         // method edit
         edit(id){
             let url = this.url + `/${id}/edit`
-            console.log(url)
             this.$router.push(url)
         },
 
