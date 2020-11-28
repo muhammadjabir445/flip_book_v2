@@ -49,24 +49,26 @@ const router = new Router({
 
             },
             {
-                path:'my-book/:kode/read',
-                name:'mybook.read',
-                meta:{auth:true},
-                component : () => import('./views/books/read.vue')
-            },
-            {
-                path:'my-book/activation',
-                name:'mybook.book',
-                meta:{auth:true},
-                component : () => import('./views/aktivasi/aktive.vue')
-            },
-
-            {
                 path:'my-book',
                 name:'mybook',
                 meta:{auth:true},
                 component : () => import('./views/books/view.vue')
             },
+            {
+                path:'my-book/activation',
+                name:'mybook.aktivasi',
+                meta:{auth:true},
+                component : () => import('./views/aktivasi/aktive.vue')
+            },
+            {
+                path:'my-book/:kode/read',
+                name:'mybook.read',
+                meta:{auth:true},
+                component : () => import('./views/books/read.vue')
+            },
+
+
+
             {
                 path:'books-list/:category',
                 name:'book.list',

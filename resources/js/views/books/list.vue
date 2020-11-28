@@ -29,7 +29,7 @@
                             <v-card
                             tile
                             height="100%"
-                            to="my-book/activation"
+                            :to="{name:'mybook.aktivasi'}"
                             style="cursor:pointer"
                             >
                                 <v-img
@@ -90,6 +90,7 @@ export default {
             this.go()
         }
     },
+
 
 }
 </script>
