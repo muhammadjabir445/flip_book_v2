@@ -27,7 +27,7 @@
                 </v-row>
             </v-container>
 
-            <v-simple-table>
+            <v-simple-table v-if="data !== []">
                 <thead>
                     <tr>
                     <th class="text-left">No</th>
@@ -38,7 +38,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(item,index) in data" :key="item.id">
-                        <td class="text-left">{{++index}}</td>
+                        <td class="text-left">{{ page | nomor(++index)}}</td>
                         <td class="text-left">{{item.kode}}</td>
                         <td class="text-left">{{item.status_code}}</td>
                         <td class="text-left">{{item.user ? item.user.name : item.status_code}}</td>
@@ -123,9 +123,23 @@ export default {
         },
     },
 
+    filters:{
+        nomor: function(page,index) {
+            let number = index
+            if(page > 1 ) {
+                number  = page - 1
+                number = `${number}0`
+                number = parseInt(number) + index
+            } else {
+                number = index
+            }
+
+            return number
+        }
+    },
     watch: {
     // whenever question changes, this function will run
-    id_aktivasi: function (newQuestion, oldQuestion) {
+         id_aktivasi: function (newQuestion, oldQuestion) {
             this.go_detail(this.page)
         }
     },

@@ -17,6 +17,13 @@ export default {
         penerbit:"",
         pdf_url:'',
         totalPage:'',
+        harga:0,
+        hargaRules: [
+            v => !!v || 'Harus diisi',
+            v => /^[0-9,]+$/.test(v) || 'Format salah',
+            v => v.split(',').join('') <= 100000000 || 'Tidak boleh lebih dari 100 juta'
+
+        ],
         categori:[
             {
                 id:'',
@@ -114,7 +121,14 @@ export default {
                 }
 
             })
-        }
+        },
+        formatAsCurrency (value, dec) {
+            dec = dec || 0
+            if (value === null) {
+                return null
+            }
+            return '' + value.toFixed(dec).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+        },
 
     },
 
@@ -122,6 +136,14 @@ export default {
     computed: {
         backgroundColor(){
             return `background-color:${this.color}`
+        },
+        harga_convert:{
+            get(){
+                return this.formatAsCurrency(this.harga, 0)
+            },
+            set(newValue){
+                this.harga= Number(newValue.replace(/[^0-9\.]/g, ''))
+            }
         },
     },
 

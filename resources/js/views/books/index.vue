@@ -53,6 +53,7 @@
                             <th class="text-left">Sampul</th>
                             <th class="text-left">Judul</th>
                             <th class="text-left">Penerbit</th>
+                            <th class="text-left">Harga</th>
                             <th class="text-left">Total Pages</th>
                             <th class="text-left">Kategori</th>
                             <th class="text-left">Status</th>
@@ -68,6 +69,7 @@
                                 </td>
                                 <td class="text-left">{{item.judul}}</td>
                                 <td class="text-left">{{item.penerbit}}</td>
+                                <td class="text-left">Rp. {{item.harga | formatPrice}}</td>
                                 <td class="text-left">{{item.pages}}</td>
                                 <td class="text-left">{{item.categori}}</td>
                                 <td class="text-left">
@@ -144,6 +146,7 @@ export default {
     },
     mixins:[CrudMixin],
     methods: {
+
         async changeStatus(id) {
             let data = this.data.find((x) => x.id === id)
             let index = this.data.findIndex(x => x.id === id)
@@ -203,6 +206,13 @@ export default {
 
             })
         }
+    },
+
+    filters: {
+        formatPrice(value) {
+            let val = (value/1).toFixed().replace('.', ',')
+            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        },
     },
     created(){
         this.get_categori()

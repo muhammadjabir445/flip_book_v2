@@ -27,12 +27,16 @@
                   $direktori = explode('/',$item->folder);
                     $direktori = array_key_exists(1,$direktori) ? $direktori[1] : '';
             @endphp
-            <div class="card mt-1 mr-2 ml-2 mb-1" style="width: 12rem; -webkit-box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.75);
-            -moz-box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.75);
-            box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.75); border-radius:0px;border:none">
-                <img src="{{asset('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")}}"  width="100%" height="270pv" class="card-img-top " alt="{{$item->judul_buku}}">
+            <div class="card mt-1 mr-2 ml-2 mb-1" style="max-width: 18rem; -webkit-box-shadow: -2px 2px 7px 2px rgba(0,0,0,0.11);
+            box-shadow: -2px 2px 7px 2px rgba(0,0,0,0.11); border-radius:0px;border:none">
+                <img src="{{asset('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")}}"  width="100%"  class="card-img-top " alt="{{$item->judul_buku}}">
                 <div class="card-body">
-                  <div class="card-title text-center w-auto " style="font-size:90%;">{{$item->judul_buku}}</div>
+                  <div class="card-title text-center w-auto ">
+                    <hr>
+                    <small color="#0097A7" class="text-center" style="font-weight: bold; margin: 0px auto;">{{$item->judul_buku}}</small>
+                    <hr>
+                    <small color="#0097A7" class="text-center" style="font-weight: bold; margin: 0px auto;">Rp. {{number_format($item->harga)}}</small>
+                  </div>
                 </div>
             </div>
             @endforeach

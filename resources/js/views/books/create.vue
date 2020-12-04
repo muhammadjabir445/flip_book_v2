@@ -37,6 +37,13 @@
                         label="Penerbit"
                         required
                         ></v-text-field>
+                        <v-text-field
+                        outlined
+                        v-model="harga_convert"
+                        :rules="hargaRules"
+                        label="Harga"
+                        required
+                        ></v-text-field>
 
                         <v-select
                             v-model="id_categori"
@@ -148,19 +155,20 @@
 
         <v-card-text>
 
+        <v-text-field
+        v-model="deskrip.title"
+        label="Title"
+        required
+        ></v-text-field>
+
+        <tiptap-vuetify
+        v-model="deskrip.deskripsi"
+        :extensions="extensions"
+        />
 
 
-                <v-text-field
-                v-model="deskrip.title"
-                label="Title"
-                required
-                ></v-text-field>
-
-                <tiptap-vuetify
-                v-model="deskrip.deskripsi"
-                :extensions="extensions"
-                />
         </v-card-text>
+
 
         <v-divider></v-divider>
 
@@ -208,6 +216,7 @@ export default {
             data.append('penerbit',this.penerbit)
             data.append('file',this.file)
             data.append('kode',this.kode)
+            data.append('harga',this.harga)
             data.append('id_categori',this.id_categori)
             data.append('pages',this.totalPage)
             data.append('deskripsi' , JSON.stringify(this.deskripsi))
