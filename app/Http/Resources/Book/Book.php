@@ -24,6 +24,7 @@ class Book extends JsonResource
             'penerbit' => $this->penerbit,
             'deskripsi' => $this->deskripsi,
             'foto' => $foto,
+            'harga' => $this->harga,
             'pages'=>$this->pages,
             'status' => $this->status,
             'categori' => $this->category ? $this->category->description : 'Belom ada kategori'

@@ -46,6 +46,7 @@ class BookService {
            $book->judul_buku = $request->judul;
            $book->kode_buku = $kode;
            $book->penerbit = $request->penerbit;
+           $book->harga = $request->harga;
            $book->id_categori = $request->id_categori;
            $file = $request->file('file')->store('file_pdf','public');
            $book->file = $file;
@@ -114,6 +115,7 @@ class BookService {
            $book->judul_buku = $request->judul;
            $book->kode_buku = $kode;
            $book->penerbit = $request->penerbit;
+           $book->harga = $request->harga;
            $book->id_categori = $request->id_categori;
 
            if ($request->file('file')) {

@@ -23,7 +23,7 @@ class DashboadController extends Controller
         ->get();
 
         return response()->json([
-            'total_user' => $user->total_user,
+            'total_user' => $user ? $user->total_user : 0,
             'total_buku' => $book->total_book,
             'total_buku_publish' => $book_publish->total_book,
             'total_aktivasi' => $total_aktivasi->totals,

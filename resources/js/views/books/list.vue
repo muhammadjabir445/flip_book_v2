@@ -39,11 +39,16 @@
                                 ></v-img>
 
                                 <!-- <v-card-title>{{item.judul}}</v-card-title> -->
-                                <v-divider class="mx-4"></v-divider>
+                                <v-divider class="mx-2"></v-divider>
 
                                 <v-card-actions align-center height="100%">
                                  <small :color="color" style="font-weight:bold;margin: 0 auto" class="text-center">{{item.judul}}</small>
 
+                                </v-card-actions>
+                                <v-divider class="mx-2"></v-divider>
+
+                                <v-card-actions align-center height="100%" class="text-center">
+                                 Rp. {{item.harga | formatPrice}}
                                 </v-card-actions>
                             </v-card>
                         </v-col>
@@ -89,6 +94,13 @@ export default {
     $route (to, from){
             this.go()
         }
+    },
+
+    filters: {
+        formatPrice(value) {
+            let val = (value/1).toFixed().replace('.', ',')
+            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        },
     },
 
 

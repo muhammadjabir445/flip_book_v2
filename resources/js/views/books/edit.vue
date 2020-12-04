@@ -38,6 +38,14 @@
                         required
                         ></v-text-field>
 
+                        <v-text-field
+                        outlined
+                        v-model="harga_convert"
+                        :rules="hargaRules"
+                        label="Harga"
+                        required
+                        ></v-text-field>
+
                          <v-select
                             v-model="id_categori"
                             :items="categori"
@@ -209,6 +217,8 @@ export default {
             data.append('file',this.file)
             data.append('kode',this.kode)
             data.append('pages',this.totalPage)
+            data.append('harga',this.harga)
+
             data.append('id_categori',this.id_categori)
             data.append('deskripsi' , JSON.stringify(this.deskripsi))
             data.append('_method','PUT')
@@ -251,6 +261,7 @@ export default {
              let book = ress.data.book
              this.judul = book.judul
              this.kode = book.kode
+             this.harga = book.harga
              this.penerbit = book.penerbit
              this.deskripsi = book.deskripsi
              this.totalPage = book.pages
