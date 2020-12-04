@@ -38,11 +38,6 @@
             color: rgb(34, 34, 34);
             background-color: white;
         }
-
-        .banner {
-               
-        }
-
         .landing h3{
             font-size: 20px;
             line-height: 1.57;
@@ -88,7 +83,9 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{asset('buku-onlinelogo.png')}}" width="180px" class="img img-responsive">
+                    <img src="{{asset('logoeka.jpeg')}}" width="180px" class="img img-responsive">
+ 		    <img src="{{asset('bmmlogo.png')}}" width="180px" class="img img-responsive">
+
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -118,45 +115,28 @@
             </div>
         </nav>
 
-        
+
          @yield('content')
         <section class="footer">
 
                 <div class="container">
                     <div class="row">
-                        <div class="col-12">
-                        <h3 class="text-center">Di dukung oleh : </h3>
-                        </div>
-                    </div>
-                    <div class="row p-4" >
-                        <div class="col-12 text-center " >
-                            <img src="{{asset('logoeka.png')}}"  class="img img-responsive w-25">
-                            <img src="{{asset('bmmlogo.png')}}"  class="img img-responsive w-25">
-                           
-                           <!--  <br>
+                        <div class="col-12 col-md-6">
+                            <img src="{{asset('logoeka.png')}}" width="50%" class="img img-responsive">
+                            <br>
                             <br>
                             <p>Alamat: <br> Jl. Kailudin No.69, Kalibaru, Kec. Cilodong, Kota Depok, Jawa Barat 16414</p>
                             <p>Telepon: 0852-1647-5603</p>
-                            &copy; 2020 CV Eka Prima Mandiri -->
+                            &copy; 2020 CV Eka Prima Mandiri
                         </div>
-                          <!--  <div class="col-12 col-md-6 text-center" >
-                         <img src="{{asset('bmmlogo.png')}}" width="50%" class="img img-responsive">
-                          <br>
-                            <br>
-                            <p>Alamat: <br> Jl. Kailudin No.69, Kalibaru, Kec. Cilodong, Kota Depok, Jawa Barat 16414</p>
-                            <p>Telepon: 0852-1647-5603</p>
-                            &copy; 2020 CV Eka Prima Mandiri 
-                        </div>-->
 
-                        <!-- <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6">
                             <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=cv%20eka%20prima%20mandiri&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://buku-online.id">CV Eka Prima Mandiri</a></div><style>.mapouter{position:relative;text-align:right;}.gmap_canvas {overflow:hidden;background:none!important;}</style></div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
         </section>
-        <div class="card-footer text-muted text-center">
-            buku-online.id @2020
-        </div>
+
     </div>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
