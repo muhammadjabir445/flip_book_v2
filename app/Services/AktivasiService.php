@@ -26,7 +26,8 @@ class AktivasiService {
             $aktivasi->tanggal = $date->format('Y-m-d');
             $aktivasi->file = 'aktivasi/' . \Str::random(100) . '.pdf';
 
-            $html = '<table style="border: 1px solid black;width:100%; border-collapse: collapse;">';
+            $html = '<table style="width:100%;border-collapse: separate;
+            border-spacing: 15px;">';
             $awal = 0;
             if ($aktivasi->save()) {
                 for ($i=0; $i < $request->total ; $i++) {
@@ -46,21 +47,21 @@ class AktivasiService {
                         // <br>
                         // Kode Buku : <br> $book->kode_buku
                         // </div>";
-                            if ($awal == 0) $html = $html . '<tr style="border: 1px solid black;">';
-                                $html = $html . "<td style='border: 1px solid black; padding:10px'>
-                                    Judul Buku : <br> $book->judul_buku
+                            if ($awal == 0) $html = $html . '<tr style="">';
+                                $html = $html . "<td style='border: 1px solid black; padding:40px 20px 40px 20px;font-size:23px'>
+                                    Judul Buku :  $book->judul_buku
                                     <br>
-                                    Kode Aktivasi : <br> $detailAktivasi->kode
+                                    Kode Aktivasi :  $detailAktivasi->kode
                                     <br>
-                                    Kode Buku : <br> $book->kode_buku
+                                    Kode Buku : $book->kode_buku
                                 </td>";
-                            if ($awal == 3) $html = $html . '</tr>';
+                            if ($awal == 2) $html = $html . '</tr>';
 
 
                                 ++$awal;
 
 
-                            if ($awal >= 3) $awal=0;
+                            if ($awal >= 2) $awal=0;
 
                         continue;
                     }

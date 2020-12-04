@@ -10,24 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/test',function(){
-    // $url = '/' . 'masterdata';
-    // $url = \App\Models\Menu::where('url',$url)->first();
-    // return $url->id;
-    // $now = \Carbon\Carbon::parse('2020-11-13');
-    // $before = \Carbon\Carbon::parse('2020-11-11 11:49:58');
-    // $selisi = $before->diffInHours($now,false);
-    return response()->json([
-        'message' => 'test'
-    ],200);
-    // $user = \App\User::findOrFail(1);
-    // $user->password = \Hash::make(123456);
-    // $user->save();
-    // $path = public_path();
-    // $pdf = new Spatie\PdfToImage\Pdf($path . '\dummy.pdf');
-    // $pdf->saveImage($path .'\test0.jpg');
 
+use App\Models\AktivasiDetail;
+
+Route::get('/test',function(){
+
+
+    $data = AktivasiDetail::where('id_aktivasi',5)->get();
+    return view('cetak.pdfv2',['data' => $data]);
 });
+
 Route::get('/',function() {
     $buku = \App\Models\Book::inRandomOrder()->where('status',1)->limit(16)->get();
     return view('landing',['data'=>$buku]);
