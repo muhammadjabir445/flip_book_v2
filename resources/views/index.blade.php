@@ -11,7 +11,7 @@
     <meta name="author" content="PT LINGKAR SOLUSI MANDIRI">
         <meta name="google-site-verification" content="Un3gfrcGjSq6LbTGjWdrJkkjgNuxUC8IUdz8baw6ZxE">
     <!-- CSRF Token -->
-	
+
     <title>BUKU DIGITAL - CV Eka Prima Mandiri</title>
     <link href="{{asset('fontawesome/css/all.css')}}"
     rel="stylesheet">
@@ -33,6 +33,7 @@
         background-color: #D50000 !important;
         color: white !important;
     }
+
 
 
  </style>
