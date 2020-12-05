@@ -142,17 +142,34 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 .viewport{
     position: relative;
 }
+@media only screen and (min-width:1024px) {
+    .flipbook {
+    height: 100vh !important;
+        margin: auto !important;
+
+    }
+
+}
+/* @media only screen and (max-height:653px) {
+    .flipbook {
+    height: 40vh;
+        margin: auto !important;
+
+    }
+
+} */
 .flipbook {
-    height: 100vh;
+    height: 50vh;
     margin: auto !important;
+
 }
 
 .flipbook .img {
-    width: 100%;
+    height: 100vh;
 }
 
 a {
@@ -213,7 +230,7 @@ a {
 }
 .flipbook .viewport {
   width: 90vw;
-  height: calc(100vh - 50px - 40px);
+  /* height: calc(100vh - 50px - 40px); */
 }
 .flipbook .bounding-box {
   box-shadow: 0 0 20px #000;
