@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-container class="container">
+        <v-container class="container fw">
             <Flipbook
             class="flipbook"
             :pages="pages"
@@ -143,16 +143,92 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.viewport{
+/* .viewport{
+    height: 100vh;
     position: relative;
-}
-@media only screen and (min-width:1024px) {
+} */
+@media(min-width:1024px) {
     .flipbook {
     height: 100vh !important;
-        margin: auto !important;
+    margin: auto !important;
+    /* margin-top: 0px !important; */
+    }
+
+}
+
+@media(max-width:1023px) {
+   .flipbook {
+    height: 100vh;
+    margin-top: -30% !important;
+    }
+    .fw .btn-left {
+    margin-top: -20% !important;
+    }
+    .fw .btn-right {
+    margin-top: -20% !important;
+    }
+    .action-bar {
+
+    bottom: 40px !important;
+
+    }
+}
+
+@media(width:411px) and (height:823px) {
+   .flipbook {
+    height: 100vh;
+    margin-top: -40% !important;
+    }
+    .fw .btn-left {
+ margin-top: -30% !important;
+    }
+    .fw .btn-right {
+   margin-top: -30% !important;
+    }
+
+    .action-bar {
+
+    bottom: 100px !important;
 
     }
 
+}
+
+@media(width:540px) and (height:720px) {
+    .flipbook {
+    height: 100vh !important;
+    margin: auto !important;
+    /* margin-top: 0px !important; */
+    }
+
+}
+
+@media(width:375px) and (height:812px) {
+   .flipbook {
+    height: 100vh;
+    margin-top: -45% !important;
+    }
+
+    .fw .btn-left {
+    margin-top: -32% !important;
+}
+.fw .btn-right {
+    margin-top: -32% !important;
+}
+}
+
+@media(width:280px) and (height:653px) {
+   .flipbook {
+    height: 100vh;
+    margin-top: -60% !important;
+    }
+
+    .fw .btn-left {
+    margin-top: -40% !important;
+}
+.fw .btn-right {
+    margin-top: -40% !important;
+}
 }
 /* @media only screen and (max-height:653px) {
     .flipbook {
@@ -162,14 +238,10 @@ export default {
     }
 
 } */
-.flipbook {
-    height: 50vh;
-    margin: auto !important;
 
-}
-
-.flipbook .img {
+.flipbook img {
     height: 100vh;
+    width:100vh
 }
 
 a {
@@ -181,35 +253,35 @@ a {
 .action-bar {
   width: 100%;
   height: 30px;
-  padding: 10px 0;
+  /* padding: 10px 0; */
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   bottom: 0px;
-  z-index: 100;
+  z-index: 2;
 }
-.container .btn {
+.fw .btn {
   font-size: 30px;
   color: #999;
 }
-.container .btn:hover{
+.fw .btn:hover{
     cursor: pointer;
 }
-.container .btn-left {
+.fw .btn-left {
   position: absolute;
   left: 0px;
   top:50%;
 }
-.container .btn-right {
+.fw .btn-right {
   position: absolute;
   right: 0px;
   top:50%;
 }
-.container .btn svg {
+.fw .btn svg {
   bottom: 0;
 }
-.container .btn:not(:first-child) {
+.fw .btn:not(:first-child) {
   margin-left: 10px;
 }
 .has-mouse .container .btn:hover {
@@ -217,20 +289,20 @@ a {
   filter: drop-shadow(1px 1px 5px #000);
   cursor: pointer;
 }
-.container .btn:active {
+.fw .btn:active {
   filter: none !important;
 }
-.container .btn.disabled {
+.fw .btn.disabled {
   color: #666;
   pointer-events: none;
 }
-.container .page-num {
+.fw .page-num {
   font-size: 12px;
   margin-left: 10px;
 }
 .flipbook .viewport {
   width: 90vw;
-  /* height: calc(100vh - 50px - 40px); */
+  /* height: 100vw !important; */
 }
 .flipbook .bounding-box {
   box-shadow: 0 0 20px #000;
