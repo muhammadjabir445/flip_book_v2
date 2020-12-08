@@ -9,19 +9,17 @@
     @php
         $awal = 0;
     @endphp
-    <table style="width:100%;border-collapse: separate;
-    border-spacing: 15px;">
+    <table style="width:100%;
+    border-spacing: 30px; color:white">
         @foreach ($data as $item)
             @if ($awal == 0)
 
             <tr style="">
             @endif
-                <td style="border: 1px solid black; padding:20px">
-                    Judul Buku :  {{$item->aktivasi->book->judul_buku}}
-                    <br>
-                    Kode Aktivasi :  {{$item->kode}}
-                    <br>
-                    Kode Buku :  {{$item->aktivasi->book->kode_buku}}
+                <td style="padding:20px; height:245px; background-repeat: no-repeat;" background="{{asset('kode.png')}}">
+
+                    <h2>{{$item->kode}}</h2>
+
                 </td>
             @if ($awal == 2)
              </tr>

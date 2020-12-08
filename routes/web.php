@@ -15,13 +15,13 @@ use App\Models\AktivasiDetail;
 
 Route::get('/test',function(){
 
-
+    return storage_path('kode.png');
     $data = AktivasiDetail::where('id_aktivasi',5)->get();
     return view('cetak.pdfv2',['data' => $data]);
 });
 
 Route::get('/',function() {
-    $buku = \App\Models\Book::inRandomOrder()->where('status',1)->limit(16)->get();
+    $buku = \App\Models\Book::inRandomOrder()->where('status',1)->limit(12)->get();
     return view('landing',['data'=>$buku]);
 })->name('landing');
 Route::get('/{any}',function(){
