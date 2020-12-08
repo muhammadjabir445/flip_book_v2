@@ -16,9 +16,10 @@
 
             <tr style="">
             @endif
-                <td style="padding:20px; height:245px; background-repeat: no-repeat;" background="{{public_path('kode.png')}}">
+                <td style="height:245px; padding:20px;background-repeat:no-repeat" background="data:image/png;base64,
+                {{ base64_encode(@file_get_contents(public_path('kode.png'))) }}">
 
-                    <h2>{{$item->kode}}</h2>
+                        <h2>{{$item->kode}}</h2>
 
                 </td>
             @if ($awal == 2)
