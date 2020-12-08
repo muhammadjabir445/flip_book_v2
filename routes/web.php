@@ -15,7 +15,7 @@ use App\Models\AktivasiDetail;
 
 Route::get('/test',function(){
 
-    return storage_path('kode.png');
+    // return storage_path('kode.png');
     $data = AktivasiDetail::where('id_aktivasi',5)->get();
     return view('cetak.pdfv2',['data' => $data]);
 });
