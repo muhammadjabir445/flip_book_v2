@@ -16,7 +16,7 @@
 
             <tr style="">
             @endif
-                <td style="padding:20px; height:245px; background-repeat: no-repeat;" background="{{asset('kode.png')}}">
+                <td style="padding:20px; height:245px; background-repeat: no-repeat;" background="{{public_path('kode.png')}}">
 
                     <h2>{{$item->kode}}</h2>
 
