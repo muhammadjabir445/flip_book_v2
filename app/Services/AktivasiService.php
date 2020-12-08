@@ -26,41 +26,32 @@ class AktivasiService {
             $aktivasi->tanggal = $date->format('Y-m-d');
             $aktivasi->file = 'aktivasi/' . \Str::random(100) . '.pdf';
 
-            $html = '<table style="idth:100%;
-            border-spacing: 30px; color:white">';
-            $awal = 0;
+            // $html = '<table style="idth:100%;
+            // border-spacing: 30px; color:white">';
+            // $awal = 0;
+            $data = [];
             if ($aktivasi->save()) {
                 for ($i=0; $i < $request->total ; $i++) {
                     $detailAktivasi = new AktivasiDetail();
                     $detailAktivasi->id_aktivasi = $aktivasi->id;
                     $detailAktivasi->kode = $date->format('Ymd') .\Str::upper(\Str::random(10));
                     if($detailAktivasi->save()){
-                        // $html = $html . " <div style='border: 1px solid black;
-                        // width: 33%;
-                        // padding: 10px;
-                        // box-sizing: border-box;
-                        // display: inline-block;
-                        // margin-bottom: 2px;'>
-                        // Judul Buku : <br> $book->judul_buku
-                        // <br>
-                        // Kode Aktivasi : <br> $detailAktivasi->kode
-                        // <br>
-                        // Kode Buku : <br> $book->kode_buku
-                        // </div>";
-                            if ($awal == 0) $html = $html . '<tr style="">';
-                                $html = $html . "<td style='padding:20px; height:245px; background-repeat: no-repeat' background=" . public_path('kode.png') .">
 
-                                    <h2>{{$detailAktivasi->kode}}</h2>
-                                </td>";
-                            if ($awal == 2) $html = $html . '</tr>';
+                        //     if ($awal == 0) $html = $html . '<tr style="">';
+                        //         $html = $html . "<td style='padding:20px; height:245px; background-repeat: no-repeat' background=" . public_path('kode.png') .">
+
+                        //             <h2>{{$detailAktivasi->kode}}</h2>
+                        //         </td>";
+                        //     if ($awal == 2) $html = $html . '</tr>';
 
 
-                                ++$awal;
+                        //         ++$awal;
 
 
-                            if ($awal >= 2) $awal=0;
+                        //     if ($awal >= 2) $awal=0;
+                        array_push($data,$detailAktivasi);
 
-                        continue;
+                        // continue;
                     }
                     else{
                         $error++;
@@ -71,9 +62,10 @@ class AktivasiService {
             }
 
 
-            $html = $html . '</table>';
-            $pdf = \App::make('snappy.pdf.wrapper');
-            $pdf->loadHTML($html);
+            // $html = $html . '</table>';
+            // $pdf = \App::make('snappy.pdf.wrapper');
+            // $pdf->loadHTML($html);
+            $pdf = PDF::loadView('cetak.pdfv2', ['data' => $data]);
             if(!$pdf->save(public_path('storage/' . $aktivasi->file))){
                 $error++;
                 throw new \Exception('Gagal simpan pdf');
