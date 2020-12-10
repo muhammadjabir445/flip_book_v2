@@ -29,18 +29,12 @@
             font-family: 'Oswald', sans-serif;
 
         }
-        .text-forest {
-            color: 	#228B22;
-        }
-       /*  .section-title {
-              color: 	#228B22;
-        } */
         .bungkus {
             min-height: 90vh;
 
             display: flex;
             font-family: 'Oswald', sans-serif;
-            padding: 15px;
+            padding-top: 20px;
             color: rgb(34, 34, 34);
             background-color: white;
         }
@@ -85,68 +79,6 @@
         .navbar .container a,.navbar .container button,.navbar .container .navbar-collapse{
             margin: auto
         }
-        .lihat{
-            text-align: center !important;
-            padding: 30px 0px 30px 0px;
-        }
-        /*--------------------------------------------------------------
-        # list-buku
-        --------------------------------------------------------------*/
-        .list-buku .ekaprima {
-        margin-bottom: 20px;
-        overflow: hidden;
-        text-align: center;
-        border-radius: 4px;
-        background: #fff;
-        box-shadow: 0px 2px 15px rgba(18, 66, 101, 0.08);
-        }
-
-        .list-buku .ekaprima .ekaprima-img {
-        position: relative;
-        overflow: hidden;
-        
-        }
-
-        
-
-        .list-buku .ekaprima .ekaprima-info {
-        padding: 25px 15px;
-        }
-
-        .list-buku .ekaprima .ekaprima-info h4 {
-        font-weight: 700;
-        margin-bottom: 5px;
-        font-size: 1em;
-        color:  #191919;
-        }
-
-        .list-buku .ekaprima .ekaprima-info span {
-        display: block;
-        font-size: .90em;
-        font-weight: 400;
-        color: 	#228B22;
-        }
-
-        .list-buku .ekaprima .ekaprima-info p {
-        font-style: italic;
-        font-size: 14px;
-        line-height: 26px;
-        color: #777777;
-        }
-
-        .list-buku .ekaprima:hover .social {
-        opacity: 1;
-        }
-        .img-thumbnail {
-        
-        height:65vh;
-        }
-	@media only screen and (max-width: 768px) {
-        .img-thumbnail {
-        
-        height:auto;
-        }
-    
     </style>
 @laravelPWA
 </head>
