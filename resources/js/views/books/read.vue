@@ -113,12 +113,12 @@ export default {
             let url = window.location.pathname
             await this.axios.get(url,this.config)
             .then((res) => {
-                console.log(res)
+
                 this.data = res.data.data
             })
             .catch((err) => console.log(err.ressponse))
             let foto = this.data.foto.split('/')
-            console.log(foto)
+
             let page_foto = `${document.location.origin}/${foto[3]}/${foto[4]}/${foto[5]}/`
 
 
@@ -129,12 +129,33 @@ export default {
         },
         flip_right() {
             this.$refs.flipbook.flipRight()
+            // console.log(this.data.status_read)
+            // console.log(this.$refs.flipbook.page)
+             if (this.data.status_read == 1 && this.$refs.flipbook.page >= 10) {
+                this.$router.push({name:'mybook.aktivasi'})
+            }
+
         },
         flip_left() {
             this.$refs.flipbook.flipLeft()
+
+            // this.$refs.flipbook.startPage = 4
+            // console.log(this.$refs.flipbook.numPages)
         }
 
     },
+   mounted(){
+       this.$watch(() => {
+           if (this.data.status_read == 1 && this.$refs.flipbook.page >= 10) {
+                this.$router.push({name:'mybook.aktivasi'})
+            }
+           return this.$refs.flipbook.page
+       },
+       (val) => {
+            return val
+        }
+       )
+   },
     created(){
         this.go()
     },
