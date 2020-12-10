@@ -24,6 +24,7 @@ Route::get('/',function() {
     $buku = \App\Models\Book::inRandomOrder()->where('status',1)->limit(12)->get();
     return view('landing',['data'=>$buku]);
 })->name('landing');
+Route::get('/list-buku','ListBuku\ListBukuController@index')->name('buku-list');
 Route::get('/{any}',function(){
     return view('index');
 })->where('any', '.*');

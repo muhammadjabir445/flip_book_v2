@@ -23,11 +23,20 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  
+
     <style>
-        section{
+        section,.container{
             font-family: 'Oswald', sans-serif;
 
+        }
+        /* list buku */
+        .list-buku{
+            position: relative;
+        }
+        .span-list-buku {
+            position: absolute;
+            top: 0px;
+            left: 0px;
         }
         .text-forest {
             color: 	#228B22;
@@ -46,7 +55,7 @@
         }
 
         .banner {
-               
+
         }
 
         .landing h3{
@@ -104,10 +113,10 @@
         .list-buku .ekaprima .ekaprima-img {
         position: relative;
         overflow: hidden;
-        
+
         }
 
-        
+
 
         .list-buku .ekaprima .ekaprima-info {
         padding: 25px 15px;
@@ -138,15 +147,16 @@
         opacity: 1;
         }
         .img-thumbnail {
-        
+
         height:65vh;
         }
 	@media only screen and (max-width: 768px) {
         .img-thumbnail {
-        
+
         height:auto;
         }
-    
+    }
+
     </style>
 @laravelPWA
 </head>
@@ -172,7 +182,12 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-
+                            <li class="nav-item">
+                                <a class="nav-link"  href="{{ route('buku-list') }}">List Buku</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"  href="{{ route('login') }}">Artikel</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link"  href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
@@ -186,7 +201,7 @@
             </div>
         </nav>
 
-        
+
          @yield('content')
         <section class="footer">
 
@@ -200,7 +215,7 @@
                         <div class="col-12 text-center " >
                             <img src="{{asset('logoeka.png')}}"  class="img img-responsive w-25">
                             <img src="{{asset('bmmlogo.png')}}"  class="img img-responsive w-25">
-                           
+
                            <!--  <br>
                             <br>
                             <p>Alamat: <br> Jl. Kailudin No.69, Kalibaru, Kec. Cilodong, Kota Depok, Jawa Barat 16414</p>
@@ -213,7 +228,7 @@
                             <br>
                             <p>Alamat: <br> Jl. Kailudin No.69, Kalibaru, Kec. Cilodong, Kota Depok, Jawa Barat 16414</p>
                             <p>Telepon: 0852-1647-5603</p>
-                            &copy; 2020 CV Eka Prima Mandiri 
+                            &copy; 2020 CV Eka Prima Mandiri
                         </div>-->
 
                         <!-- <div class="col-12 col-md-6">
