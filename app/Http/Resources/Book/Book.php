@@ -27,7 +27,8 @@ class Book extends JsonResource
             'harga' => $this->harga,
             'pages'=>$this->pages,
             'status' => $this->status,
-            'categori' => $this->category ? $this->category->description : 'Belom ada kategori'
+            'categori' => $this->category ? $this->category->description : 'Belom ada kategori',
+            'status_read' => $this->status_read ? $this->status_read : 2
         ];
         if (\Auth::user()->id_role !== 25) {
             $data['file'] = asset('storage/' . $this->file);

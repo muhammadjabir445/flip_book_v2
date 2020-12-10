@@ -26,10 +26,11 @@
                         :key="item.id"
                         style="min-height:420px !important"
                         >
+
                             <v-card
                             tile
                             height="100%"
-                            :to="{name:'mybook.aktivasi'}"
+                            :to="{name:'mybook.read' , params:{kode:item.kode}}"
                             style="cursor:pointer"
                             >
                                 <v-img

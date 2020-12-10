@@ -8,6 +8,7 @@ use App\Http\Resources\Book\BookCollection;
 use App\Models\Book;
 use App\Models\MasterDataDetail;
 use App\Services\BookService;
+use App\User;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -28,6 +29,18 @@ class BookController extends Controller
     }
     public function my_book_read($kode) {
         $book = Book::where('kode_buku',$kode)->first();
+        $book_user =  Book::with('user')->where('kode_buku',$kode)
+        ->whereHas('user',function($q){
+            $q->where('id',\Auth::user()->id);
+        })
+        ->first();
+
+
+        if ( !$book_user) {
+            $book->pages = 10;
+            $book->status_read = 1;
+        }
+        // return $book;
         return new BookBook($book);
     }
 

@@ -25,4 +25,8 @@ class Book extends Model
             return $q->where('id_categori',$request->category);
         }
     }
+
+    public function user(){
+        return $this->belongsToMany('App\User','book_user','id_buku','id_user');
+    }
 }
