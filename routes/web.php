@@ -25,6 +25,8 @@ Route::get('/',function() {
     return view('landing',['data'=>$buku]);
 })->name('landing');
 Route::get('/list-buku','ListBuku\ListBukuController@index')->name('buku-list');
+Route::get('/artikels','Artikel\ArtikelFrontController@index')->name('artikels');
+Route::get('/artikels/{slug}','Artikel\ArtikelFrontController@read')->name('artikels.read');
 Route::get('/{any}',function(){
     return view('index');
 })->where('any', '.*');

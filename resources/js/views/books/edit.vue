@@ -117,6 +117,15 @@
                             cols="12"
                             align="right"
                             >
+                             <v-btn
+                                :disabled="loading"
+                                color="red"
+                                tile
+                                style="color:white !important"
+                                @click="$router.go(-1)"
+                                >
+                                Batal
+                                </v-btn>
                               <v-btn
                                 :disabled="!valid"
                                 color="success"

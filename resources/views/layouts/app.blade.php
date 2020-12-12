@@ -186,7 +186,7 @@
                                 <a class="nav-link"  href="{{ route('buku-list') }}">List Buku</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link"  href="{{ route('login') }}">Artikel</a>
+                                <a class="nav-link"  href="{{ route('artikels') }}">Artikel</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link"  href="{{ route('login') }}">{{ __('Login') }}</a>

@@ -9,6 +9,7 @@ import MenuRouter from './routes/Menu'
 import RoleManagementRouter from './routes/RoleManagement'
 import BookRouter from './routes/Book'
 import AktivasiRouter from './routes/Aktivasi'
+import ArtikelRouter from './routes/Artikel'
 // import Vuetify from 'vuetify'
 // Vue.use(Vuetify)
 import './plugins/vuetify.js'
@@ -40,6 +41,7 @@ const router = new Router({
             RoleManagementRouter,
             BookRouter,
             AktivasiRouter,
+            ArtikelRouter,
 
             {
                 path: '/color',
