@@ -44,7 +44,7 @@ export default {
             data.append('email',this.email)
             data.append('password',this.password)
             await this.axios.post('/login',data)
-            .then((ress) => {
+            .then(async (ress) => {
                 this.setAuth({
                     user: ress.data.user,
                     token : ress.data.access_token,
@@ -52,14 +52,19 @@ export default {
                 })
                 localStorage.setItem('token', this.token);
                 if(ress.data.user.id_role === 25){
-                    this.$router.push('/books-list')
+                    await this.$router.push('/books-list')
                 }
-                this.$router.push('/dahsboard')
+                await this.$router.push('/dahsboard')
             })
             .catch((err) =>{
+
+                let message = 'Email atau password salah'
+                if (err.response.status == 400) {
+                    message = err.response.data.message
+                }
                 this.setSnakbar({
                     color_snakbar:'red',
-                    pesan : 'Email atau Password salah',
+                    pesan :message,
                     status : true
                 })
             })

@@ -14,10 +14,15 @@
 use App\Models\AktivasiDetail;
 
 Route::get('/test',function(){
-
-    // return storage_path('kode.png');
-    $data = AktivasiDetail::where('id_aktivasi',5)->get();
-    return view('cetak.pdfv2',['data' => $data]);
+    $now = \Carbon\Carbon::now();
+    $now = $now->format('Y-m-d H:i:s');
+    $user = \App\User::select('updated_at',\DB::raw("TIMESTAMPDIFF(hour, updated_at, '$now') as jam"))
+    ->where(\DB::raw("TIMESTAMPDIFF(hour, updated_at, '$now')"),'>=',24)
+    ->get();
+    return $user;
+    // // return storage_path('kode.png');
+    // $data = AktivasiDetail::where('id_aktivasi',5)->get();
+    // return view('cetak.pdfv2',['data' => $data]);
 });
 
 Route::get('/',function() {

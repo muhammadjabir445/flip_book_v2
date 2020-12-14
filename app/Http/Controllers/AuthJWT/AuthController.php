@@ -17,10 +17,30 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login','register','password_reset','password_reset_action','get_sekolah']]);
     }
 
+    public function status_login($id) {
+        $user = AppUser::findOrFail($id);
+        if ($user) {
+            if($user->id_role === 25 && $user->status == 1) {
+                $user->status = 0;
+                $user->save();
+            }
+        }
+    }
+
     public function login(Request $request)
     {
         $credentials = request(['email', 'password']);
 
+        $user = AppUser::where('email',$request->email)->first();
+        if ($user) {
+            if ($user->id_role === 25 && $user->status === 1 ) {
+                return response()->json(['message' => 'Akun telah login ditempat lain'], 400);
+            } else if($user->id_role === 25 && $user->status === 0) {
+                AppUser::where('email',$request->email)->update([
+                    'status' => 1
+                ]);
+            }
+        }
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
@@ -79,6 +99,13 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
+        $user = AppUser::findOrFail(\Auth::user()->id);
+        if ($user) {
+            if($user->id_role === 25 && $user->status == 1) {
+                $user->status = 0;
+                $user->save();
+            }
+        }
         auth()->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
