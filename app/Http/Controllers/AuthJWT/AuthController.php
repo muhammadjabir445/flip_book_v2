@@ -31,18 +31,21 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        $user = AppUser::where('email',$request->email)->first();
-        if ($user) {
-            if ($user->id_role === 25 && $user->status === 1 ) {
-                return response()->json(['message' => 'Akun telah login ditempat lain'], 400);
-            } else if($user->id_role === 25 && $user->status === 0) {
-                AppUser::where('email',$request->email)->update([
-                    'status' => 1
-                ]);
-            }
-        }
+
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
+        } else {
+            $user = AppUser::where('email',$request->email)->first();
+            if ($user) {
+                if ($user->id_role === 25 && $user->status === 1 ) {
+                    auth()->logout();
+                    return response()->json(['message' => 'Akun telah login ditempat lain'], 400);
+                } else if($user->id_role === 25 && $user->status === 0) {
+                    AppUser::where('email',$request->email)->update([
+                        'status' => 1
+                    ]);
+                }
+            }
         }
 
         return $this->respondWithToken($token);
@@ -89,6 +92,15 @@ class AuthController extends Controller
         // return response()->json($this->guard()->user());
         $header = $request->header('Authorization');
         $header = explode('Bearer ',$header);
+        $user =$this->guard();
+        if ($user) {
+            if ($user->id_role === 25) {
+                $update_user = AppUser::findOrFail($user->id);
+                $update_user ->status = 1;
+                $update_user ->save();
+            }
+        }
+
         return $this->respondWithToken($header[1]);
     }
 
@@ -99,8 +111,11 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        $user = AppUser::findOrFail(\Auth::user()->id);
-        if ($user) {
+
+        $user =$this->guard();
+
+        if ($user->id_role === 25) {
+            $user = AppUser::findOrFail(\Auth::user()->id);
             if($user->id_role === 25 && $user->status == 1) {
                 $user->status = 0;
                 $user->save();
