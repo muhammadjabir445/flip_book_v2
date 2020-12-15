@@ -48,7 +48,8 @@
 
                             </div>
                             <div class="col-8">
-                                <h3>{{$item->judul_buku}}</h3>
+                                <p>{{$item->judul_buku}}</p>
+                                <p>Rp. {{number_format($item->harga)}}</p>
                             </div>
                         </div>
                     </div>
