@@ -36,22 +36,16 @@ class AktivasiService {
                     $detailAktivasi->id_aktivasi = $aktivasi->id;
                     $detailAktivasi->kode = $date->format('Ymd') .\Str::upper(\Str::random(10));
                     if($detailAktivasi->save()){
-
                             if ($awal == 0) $html = $html . '<tr>';
                                 $html = $html . "<td style='height:245px; padding:20px; background-repeat:no-repeat;' background='data:image/png;base64,".base64_encode(@file_get_contents(public_path('kode.png'))) ."' >
-
-                                    <h2>$detailAktivasi->kode</h2>
-
+                                    <p>$book->judul_buku</p>
+                                    <p>$detailAktivasi->kode</p>
+                                    <p>$book->kode_buku</p>
                                 </td>";
                             if ($awal == 2) $html = $html . '</tr>';
-
-
                                 ++$awal;
-
-
                             if ($awal >= 2) $awal=0;
                         // array_push($data,$detailAktivasi);
-
                         continue;
                     }
                     else{
