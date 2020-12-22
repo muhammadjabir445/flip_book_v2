@@ -31,7 +31,9 @@ Route::middleware(['auth:api'])->group(function () {
 
 	    Route::get('/aktivasi/check','Aktivasi\AktivasiController@aktivasi_check');
     	Route::get('/aktivasi/{kode}/aktive','Aktivasi\AktivasiController@aktivasi_active');
-
+        Route::get('/gambar-landing','Gambar\GambarController@index');
+        Route::post('/gambar-landing','Gambar\GambarController@store');
+        Route::delete('/gambar-landing/{id}','Gambar\GambarController@destroy');
     	Route::group(['middleware' => ['can:menu']], function () {
             Route::get('/dahsboard','Dashboard\DashboadController@index');
             Route::get('/role-management','Role\RoleManagementController@index');
@@ -41,6 +43,7 @@ Route::middleware(['auth:api'])->group(function () {
             Route::get('/aktivasi/{id}/pdf','Aktivasi\AktivasiController@pdf');
             Route::get('/books-list/{category}','Book\BookController@books_list');
             Route::get('/my-book','Book\BookController@my_book');
+
 
             Route::get('/my-book/{kode}/read','Book\BookController@my_book_read');
             Route::get('books/category', 'Book\BookController@category');

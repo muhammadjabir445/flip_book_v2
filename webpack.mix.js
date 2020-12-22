@@ -15,7 +15,7 @@ var LiveReloadPlugin = require('webpack-livereload-plugin');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css').sourceMaps();
+//    .sass('resources/sass/app.scss', 'public/css').sourceMaps();
 
 mix.webpackConfig({
     plugins: [

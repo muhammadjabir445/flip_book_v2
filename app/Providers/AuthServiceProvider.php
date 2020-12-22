@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('menu',function($user) {
             $url = '/' . \Request::segment(2);
-            $url = Menu::where('url',$url)->first();
+            $url =  Menu::where('url',$url)->first();
             $menu = RoleMenu::where('id_role',$user->id_role)->first();
             $menu = json_decode($menu->parent_menu);
             return in_array($url->id,$menu) ? Response::allow() : Response::deny('You must be a super administrator.');

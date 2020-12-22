@@ -8,15 +8,12 @@
 <section class="banner">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-        <div class="carousel-item active">
-        <img class="d-block w-100" src="{{asset('banner-epm2.png')}}" alt="First slide">
+        @foreach ($gambar as $index => $item)
+        <div class="carousel-item {{$index === 0 ? ' active' : ''}}">
+        <img class="d-block w-100" src="{{asset('storage/' . $item->foto)}}" alt="First slide">
         </div>
-        <div class="carousel-item">
-        <img class="d-block w-100" src="{{asset('banner-epm1.png')}}" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-        <img class="d-block w-100" src="{{asset('banner-epm3.png')}}" alt="Third slide">
-        </div>
+        @endforeach
+
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -27,7 +24,7 @@
         <span class="sr-only">Next</span>
     </a>
     </div>
-</section> 
+</section>
 <!-- end banner -->
 
 <section class="bungkus">
@@ -36,8 +33,8 @@
             <div class="col-12 col-md-6">
                 <h1 class="text-primary">Buku Online Digital </h1>
                 <h4 class="text-muted">Buku adalah sumber belajar. Bawa buku perkaya ilmu</h4>
-            
-                <h5 class="mt-4 text-forest">Buku-online.id Buku Digital dalam genggaman. Merupakan media proses belajar yang modern, 
+
+                <h5 class="mt-4 text-forest">Buku-online.id Buku Digital dalam genggaman. Merupakan media proses belajar yang modern,
                 simple dan fleksible bagi siswa dan guru.</h5>
                 <br>
                 <button type="button" onclick="window.location.href='/login'" style="border-radius:50px" class="btn btn-primary">Baca Sekarang</button>
@@ -56,7 +53,7 @@
 
         <div class="section-title text-center text-forest ">
           <h2><span>Buku Online Digital</span>  </h2>
-          <p>Dapatkan buku pelajaran TK/PAUD, SD, SMP, SMA dari penerbit EKA PRIMA MANDIRI dan BUKIT MAS MULIA. Dengan <a href="buku-online.id">buku-online.id</a>  
+          <p>Dapatkan buku pelajaran TK/PAUD, SD, SMP, SMA dari penerbit EKA PRIMA MANDIRI dan BUKIT MAS MULIA. Dengan <a href="buku-online.id">buku-online.id</a>
             belajar jadi lebih mudah dan fleksible, kapan saja dan dimana saja. </p>
         </div>
 
@@ -84,16 +81,16 @@
             </div>
           </div>
           @endforeach
-        
+
         </div>
 
       </div>
-     
+
 	<div class="lihat">
     		<button type="button" onclick="window.location.href='/login'" style="border-radius:40px;padding:5px;40px;5px;40px; width:50%" class="btn btn-success">Lihat lebih banyak buku</button>
     	</div>
     </section><!-- End list-buku Section -->
-    
+
 <!-- <section class="list-buku">
     <div class="container text-center">
         <label for="" style="font-size: 25px">Daftar Buku</label>
