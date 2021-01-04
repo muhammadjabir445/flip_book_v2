@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div @click.right="disabled_right_click($event)">
     <v-app v-if="$route.name != 'login'">
         <Snakbar/>
         <div v-if="user">
@@ -64,7 +64,11 @@ export default {
         ...mapActions({
             setAuth: 'auth/setAuth',
             setColor: 'color/setColor'
-        })
+        }),
+        disabled_right_click(event) {
+            event.preventDefault();
+
+        }
     },
 
     async created() {

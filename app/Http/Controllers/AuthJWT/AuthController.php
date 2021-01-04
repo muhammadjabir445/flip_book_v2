@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AuthJWT;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User\User;
+use App\Jobs\SendAktivasiAkun;
 use App\Jobs\SendResetPassword;
 use App\Models\Menu;
 use App\User as AppUser;
@@ -44,6 +45,9 @@ class AuthController extends Controller
                     AppUser::where('email',$request->email)->update([
                         'status' => 1
                     ]);
+                } else if($user->status_akun == false) {
+                    auth()->logout();
+                    return response()->json(['message' => 'Akun belum diaktivasi silakan check email anda'], 400);
                 }
             }
         }
@@ -71,10 +75,15 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->sekolah = \Str::upper($request->sekolah);
         $user->password = \Hash::make($request->password);
+        $user->status_akun = false;
+        $user->kode_aktivasi = \Str::random(20);
         $user->id_role = $request->role ? $request->role : 25;
         $user->save();
-
-        return $this->login($request);
+        SendAktivasiAkun::dispatch($user,$user->kode_aktivasi);
+        return response()->json([
+            'message' => 'Silakan Cek Email Anda untuk aktivasi akun'
+        ]);
+        // return $this->login($request);
     }
 
     public function get_sekolah(Request $request) {
@@ -239,7 +248,8 @@ class AuthController extends Controller
             ],400);
         }
         $update = AppUser::where('email',$data->email)->update([
-            'password' => \Hash::make($request->password)
+            'password' => \Hash::make($request->password),
+            'status_akun' => true,
         ]);
 
         if ($update) {

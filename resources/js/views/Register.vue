@@ -27,10 +27,20 @@
                     >
                      {{pesan_error}}
                     </v-alert>
+
+                     <v-alert
+                    text
+                    type="success"
+
+                    v-if="pesan_success"
+                    >
+                     {{pesan_success}}
+                    </v-alert>
                     <v-form
                         ref="form"
                         v-model="valid"
                         lazy-validation
+                        v-if="pesan_success == ''"
                     >
                         <v-text-field
                         v-model="name"

@@ -29,6 +29,7 @@ export default {
           return v => v === password || 'Harus sama'
       },
       pesan_error:'',
+      pesan_success: '',
       loading:false
     }),
 
@@ -73,6 +74,7 @@ export default {
         async register(){
             this.loading = true
             this.pesan_error = ''
+            this.pesan_success = ''
             let data = new FormData()
             data.append('email',this.email)
             data.append('password',this.password)
@@ -80,24 +82,16 @@ export default {
             data.append('sekolah',this.sekolah)
             await this.axios.post('/register',data)
             .then((ress) => {
-                console.log(ress)
-                this.setAuth({
-                    user: ress.data.user,
-                    token : ress.data.access_token,
-                    menu : ress.data.menu
-                })
-                localStorage.setItem('token', this.token);
-                if(ress.data.user.id_role == 25)  this.$router.push('/books-list')
-                this.$router.push('/dahsboard')
+                this.pesan_success = ress.data.message
+                this.email = ''
+                this.password = ''
+                this.name = ''
+                this.sekolah = ''
 
             })
             .catch((err) =>{
                 console.log(err.response)
-                // this.setSnakbar({
-                //     color_snakbar:'red',
-                //     pesan : 'Email atau Password salah',
-                //     status : true
-                // })
+
                 this.pesan_error = err.response.data.message
             })
             this.loading = false

@@ -15,17 +15,11 @@ use App\Models\AktivasiDetail;
 use App\Models\Gambar;
 
 Route::get('/test',function(){
-    // $now = \Carbon\Carbon::now();
-    // $now = $now->format('Y-m-d H:i:s');
-    // $user = \App\User::select('updated_at',\DB::raw("TIMESTAMPDIFF(hour, updated_at, '$now') as jam"))
-    // ->where(\DB::raw("TIMESTAMPDIFF(hour, updated_at, '$now')"),'>=',24)
-    // ->get();
-    // return $user;
-    // // return storage_path('kode.png');
-    // $data = AktivasiDetail::where('id_aktivasi',5)->get();
-    // return view('cetak.pdfv2',['data' => $data]);
-    $user = auth()->user();
-    return $user;
+    $file_pdf= public_path("storage/file_pdf/X9bgUfM5IrO8cxyQLkDOSJgdpzn60MKFauk5wUtA.pdf");
+        $output =  public_path("storage/file_pdf/dfdf".".jpg");
+
+
+        exec("magick convert -size 1275x1650 -density 100x150 -background white -alpha remove {$file_pdf}[0] -resize 1275x1650 -quality 85 -sharpen 0x1.0 $output");
 });
 
 Route::get('/',function() {
@@ -33,6 +27,14 @@ Route::get('/',function() {
     $gambar = Gambar::all();
     return view('landing',['data'=>$buku,'gambar' => $gambar]);
 })->name('landing');
+Route::get('/aktivasi-akun/{kode_aktivasi}',function($kode_aktivasi) {
+    $user = \App\User::where('kode_aktivasi',$kode_aktivasi)->update([
+        'kode_aktivasi' => '',
+        'status_akun' => true
+    ]);
+
+    return redirect('/login');
+});
 Route::get('/list-buku','ListBuku\ListBukuController@index')->name('buku-list');
 Route::get('/artikels','Artikel\ArtikelFrontController@index')->name('artikels');
 Route::get('/artikels/{slug}','Artikel\ArtikelFrontController@read')->name('artikels.read');
