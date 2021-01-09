@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Book;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Book\Book as BookBook;
 use App\Http\Resources\Book\BookCollection;
+use App\Http\Resources\Book\BookRead;
 use App\Models\Book;
 use App\Models\MasterDataDetail;
 use App\Services\BookService;
@@ -41,7 +42,7 @@ class BookController extends Controller
             $book->status_read = 1;
         }
         // return $book;
-        return new BookBook($book);
+        return new BookRead($book);
     }
 
     public function books_list(Request $request,$category) {

@@ -117,18 +117,21 @@ export default {
                 this.data = res.data.data
             })
             .catch((err) => console.log(err.ressponse))
-            let foto = this.data.foto.split('/')
+            this.data.fotos.forEach(element => {
+                    this.pages.push(element)
+            });
+            // let foto = this.data.foto.split('/')
 
-            let page_foto = `${document.location.origin}/${foto[3]}/${foto[4]}/${foto[5]}/`
-
-
-            for (let index = 0; index < this.data.pages; index++) {
-                this.pages.push(`${page_foto}/${foto[5]}-${index}.jpg`)
-
-            }
+            // let page_foto = `${document.location.origin}/api/gambar/buku/${foto[6]}`
+            // await this.axios.get(`${page_foto}/${foto[6]}-0.jpg`)
+            // .then((ress) => {
+            //     ress.data.forEach(element => {
+            //         this.pages.push(element)
+            //     });
+            // })
         },
-        flip_right() {
-            this.$refs.flipbook.flipRight()
+        async flip_right() {
+            await this.$refs.flipbook.flipRight()
             // console.log(this.data.status_read)
             // console.log(this.$refs.flipbook.page)
              if (this.data.status_read == 1 && this.$refs.flipbook.page >= 10) {
@@ -141,6 +144,15 @@ export default {
 
             // this.$refs.flipbook.startPage = 4
             // console.log(this.$refs.flipbook.numPages)
+        },
+        getBase64Image(img) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var dataURL = canvas.toDataURL("image/png");
+        return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
         }
 
     },

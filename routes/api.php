@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 /*
@@ -23,7 +24,21 @@ Route::post('/login', 'AuthJWT\AuthController@login');
 Route::post('/logout', 'AuthJWT\AuthController@logout');
 Route::post('/edit-profile','AuthJWT\AuthController@EditProfile');
 Route::get('/setting-color','Setting\SettingController@color');
+Route::get('/gambar/buku/{category}/{file}',function($category,$file) {
+    $buku = Book::select('kode_buku','pages')->where('kode_buku',$category)->first();
+    $foto = [];
+    for ($i=0; $i  < $buku->pages ; $i++) {
+        array_push($foto,"data:image/png;base64," . base64_encode(file_get_contents(public_path('storage/data_buku/' . "$category/$category-$i.jpg"))));
+    }
+    // $user = \Auth::user();
+    // if ($user) {
+        // return  "data:image/png;base64," . base64_encode(file_get_contents(public_path('storage/data_buku/' . "$category/$file")));
+    // } else {
+    //     return "404";
+    // }
+    return $foto;
 
+})->name('gambar.image');
 Route::get('/get-sekolah','AuthJWT\AuthController@get_sekolah');
 Route::resource('mencoba', 'Users\UsersController');
 

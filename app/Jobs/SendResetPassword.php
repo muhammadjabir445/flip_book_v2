@@ -34,6 +34,6 @@ class SendResetPassword implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->data->email)->send(new ResetPassword($this->token));
+        Mail::to($this->data['email'])->send(new ResetPassword($this->token));
     }
 }
