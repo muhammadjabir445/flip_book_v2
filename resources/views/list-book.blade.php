@@ -31,7 +31,7 @@
                     <div class="p-2 bg-white">
                         <div class="row">
                             <div class="col-4">
-                                <img src="{{asset('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")}}" width="100%" class="img img-responsive">
+                                <img src="data:image/png;base64,{{base64_encode(file_get_contents(public_path('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")))}}" width="100%" class="img img-responsive">
                                 @if ($item->category)
                                  @php
                                     if($item->category->description == 'SD') {

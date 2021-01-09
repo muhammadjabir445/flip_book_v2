@@ -66,7 +66,7 @@
           <div class="col-lg-3 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
             <div class="ekaprima">
               <div class="ekaprima-img">
-                <img src="{{asset('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")}}" class="img-thumbnail" alt="{{$item->judul_buku}}">
+                <img src="data:image/png;base64,{{base64_encode(file_get_contents(public_path('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")))}}" class="img-thumbnail" alt="{{$item->judul_buku}}">
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>
                   <a href=""><i class="icofont-facebook"></i></a>
