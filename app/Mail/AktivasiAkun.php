@@ -17,11 +17,12 @@ class AktivasiAkun extends Mailable
      * @return void
      */
     protected $data;
-    public function __construct($data)
+    protected $name;
+    public function __construct($data,$name)
     {
         $this->data=$data;
+        $this->name=$name;
     }
-
     /**
      * Build the message.
      *
@@ -29,6 +30,10 @@ class AktivasiAkun extends Mailable
      */
     public function build()
     {
-        return $this->view('aktivasi')->subject('Buku-Online Id Aktivasi akun')->with(['token' => $this->data]);
+        return $this->view('aktivasi')
+        ->subject('Buku-Online Id Aktivasi akun')
+        ->replyTo('noreply@buku-online.id')
+        ->from('noreply@buku-online.id','buku-online.id')
+        ->with(['token' => $this->data,'name'=>$this->name]);
     }
 }

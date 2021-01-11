@@ -17,9 +17,11 @@ class ResetPassword extends Mailable
      * @return void
      */
     protected $data;
-    public function __construct($data)
+    protected $name;
+    public function __construct($data,$name)
     {
         $this->data=$data;
+        $this->name=$name;
     }
 
     /**
@@ -29,6 +31,10 @@ class ResetPassword extends Mailable
      */
     public function build()
     {
-        return $this->view('email')->subject('Buku-Online Id')->with(['token' => $this->data]);
+        return $this->view('email')
+        ->subject('Buku-Online Id')
+        ->replyTo('noreply@buku-online.id')
+        ->from('noreply@buku-online.id','buku-online.id')
+        ->with(['token' => $this->data,'name'=>$this->name]);
     }
 }
