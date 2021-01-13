@@ -104,6 +104,7 @@ export default {
             pages:[null],
             pageNum:0,
             judul_buku:'',
+             tab: null,
             data:{}
         }
     },
