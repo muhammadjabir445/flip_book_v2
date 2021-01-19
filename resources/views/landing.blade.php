@@ -66,7 +66,13 @@
           <div class="col-lg-3 col-md-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
             <div class="ekaprima">
               <div class="ekaprima-img">
-                <img src="data:image/png;base64,{{base64_encode(file_get_contents(public_path('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")))}}" class="img-thumbnail" alt="{{$item->judul_buku}}">
+                  @if (\File::exists(public_path('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")))
+                    <img src="data:image/png;base64,{{base64_encode(file_get_contents(public_path('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")))}}" class="img-thumbnail" alt="{{$item->judul_buku}}">
+
+                  @else
+                  <img src="">
+
+                  @endif
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>
                   <a href=""><i class="icofont-facebook"></i></a>
