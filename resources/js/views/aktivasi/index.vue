@@ -46,7 +46,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="(item,index) in data" :key="item.id">
-                                <td class="text-left">{{++index}}</td>
+                                <td class="text-left">{{ page | nomor(++index)}}</td>
                                 <td class="text-left">{{item.book.judul_buku}}</td>
                                 <td class="text-left">{{item.tanggal}}</td>
                                 <td class="text-left">{{item.total_aktivasi}}</td>
@@ -149,7 +149,21 @@ export default {
     },
     components:{
         DetailAktivasi
-    }
+    },
+    filters:{
+        nomor: function(page,index) {
+            let number = index
+            if(page > 1 ) {
+                number  = page - 1
+                number = `${number}0`
+                number = parseInt(number) + index
+            } else {
+                number = index
+            }
+
+            return number
+        }
+    },
 
 }
 </script>

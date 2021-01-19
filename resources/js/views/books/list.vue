@@ -9,13 +9,22 @@
             tile
              outlined
             >
-                <v-card-text class="text-center">
-                     <v-text-field
-                                v-model="keyword"
-                                label="Pencarian"
-                                v-on:keyup ="go(page)"
-                                :color="color"
+                <v-card-text class>
+                    <v-row>
+                    <v-col cols="10">
+                    <v-text-field
+                    v-model="keyword"
+                    label="Pencarian"
+                    :color="color"
                     ></v-text-field>
+                    </v-col>
+                    <v-col cols="2">
+                            <v-btn style="margin-top:15px !important" color="primary" v-on:click="go(page)" fab x-small dark >
+                                <v-icon x-small >fal fa-search</v-icon>
+                            </v-btn>
+                    </v-col>
+                    </v-row>
+
                      <v-row
                     justify="center"
                     >
