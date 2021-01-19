@@ -53,7 +53,7 @@ export default {
                 })
                 localStorage.setItem('token', this.token);
                 if(ress.data.user.id_role === 25){
-                    await this.$router.push('/books-list')
+                    await this.$router.push('/my-book')
                 }
                 await this.$router.push('/dahsboard')
             })

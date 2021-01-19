@@ -32,8 +32,7 @@
                         <div class="row">
                             <div class="col-4">
                                 @if (\File::exists(public_path('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")))
-                                    <img src="data:image/png;base64,{{base64_encode(file_get_contents(public_path('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")))}}" class="img-thumbnail" alt="{{$item->judul_buku}}">
-
+                                <img src="data:image/png;base64,{{base64_encode(file_get_contents(public_path('storage/' . $item->folder . "/{$direktori}" . "-0.jpg")))}}" width="100%" class="img img-responsive">
                                 @else
                                 <img src="">
 
