@@ -16,45 +16,57 @@
                         :lazy-validation="lazy"
                         >
                         <label for="" align="left">Buku Baru</label>
+                        <v-row>
+                            <v-col
+                            md="8"
+                            >
+                                      <v-text-field
+                                    v-model="kode"
+                                    :rules="nameRules"
+                                    label="Kode buku"
+                                    required
+                                    ></v-text-field>
 
-                          <v-text-field
-                        v-model="kode"
-                        :rules="nameRules"
-                        label="Kode buku"
-                        required
-                        ></v-text-field>
+                                    <v-text-field
+                                    v-model="judul"
+                                    :rules="nameRules"
+                                    label="Judul buku"
+                                    required
+                                    ></v-text-field>
 
-                        <v-text-field
-                        v-model="judul"
-                        :rules="nameRules"
-                        label="Judul buku"
-                        required
-                        ></v-text-field>
+                                    <v-text-field
+                                    v-model="penerbit"
+                                    :rules="nameRules"
+                                    label="Penerbit"
+                                    required
+                                    ></v-text-field>
 
-                        <v-text-field
-                        v-model="penerbit"
-                        :rules="nameRules"
-                        label="Penerbit"
-                        required
-                        ></v-text-field>
+                                    <v-text-field
+                                    outlined
+                                    v-model="harga_convert"
+                                    :rules="hargaRules"
+                                    label="Harga"
+                                    required
+                                    ></v-text-field>
 
-                        <v-text-field
-                        outlined
-                        v-model="harga_convert"
-                        :rules="hargaRules"
-                        label="Harga"
-                        required
-                        ></v-text-field>
-
-                         <v-select
-                            v-model="id_categori"
-                            :items="categori"
-                            :rules="[v => !!v || 'Item is required']"
-                            label="Kategori"
-                            item-text="description"
-                            item-value="id"
-                            required
-                        ></v-select>
+                                    <v-select
+                                        v-model="id_categori"
+                                        :items="categori"
+                                        :rules="[v => !!v || 'Item is required']"
+                                        label="Kategori"
+                                        item-text="description"
+                                        item-value="id"
+                                        required
+                                    ></v-select>
+                            </v-col>
+                            <v-col md="4">
+                                 <td class="text-left">
+                                    <v-img :src="foto" v-if="foto"/>
+                                    {{!foto ? 'Sedang diproses' : ''}}
+                                </td>
+                            </v-col>
+                        </v-row>
+                
 
                         <p id="dataPages" style="display:none">{{totalPage}}</p>
 
@@ -138,7 +150,7 @@
                             </v-col>
                         </v-row>
 
-                    </v-form>
+                        </v-form>
                     </v-container>
 
                 </v-card-text>
@@ -271,6 +283,7 @@ export default {
              this.judul = book.judul
              this.kode = book.kode
              this.harga = book.harga
+             this.foto = book.foto
              this.penerbit = book.penerbit
              this.deskripsi = book.deskripsi
              this.totalPage = book.pages

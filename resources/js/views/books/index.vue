@@ -17,7 +17,7 @@
                             <v-text-field
                                 v-model="keyword"
                                 label="Pencarian"
-                                v-on:keyup="go(page)"
+                                v-on:keyup.enter="go(page)"
                                 :color="color"
                             ></v-text-field>
                             </v-col>
@@ -50,7 +50,7 @@
                         <thead>
                             <tr>
                             <th class="text-left">Nomor</th>
-                            <th class="text-left">Sampul</th>
+                            <!-- <th class="text-left">Sampul</th> -->
                             <th class="text-left">Judul</th>
                             <th class="text-left">Penerbit</th>
                             <th class="text-left">Harga</th>
@@ -63,10 +63,10 @@
                         <tbody>
                             <tr v-for="(item,index) in data" :key="item.id">
                                 <td class="text-left">{{ page | nomor(++index)}}</td>
-                                <td class="text-left">
+                                <!-- <td class="text-left">
                                     <v-img :src="item.foto" height="120px" width="80px" v-if="item.foto"/>
                                     {{!item.foto ? 'Sedang diproses' : ''}}
-                                </td>
+                                </td> -->
                                 <td class="text-left">{{item.judul}}</td>
                                 <td class="text-left">{{item.penerbit}}</td>
                                 <td class="text-left">Rp. {{item.harga | formatPrice}}</td>

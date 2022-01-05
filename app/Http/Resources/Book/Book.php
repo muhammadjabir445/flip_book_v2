@@ -17,7 +17,9 @@ class Book extends JsonResource
         $direktori = explode('/',$this->folder);
 	    $direktori = array_key_exists(1,$direktori) ? $direktori[1] : '';
         // $foto = \Storage::exists('public/' .$this->folder . "/{$direktori}" . "-0.jpg") ? asset('storage/' . $this->folder . "/{$direktori}" . "-0.jpg") :'';
-        $foto = \Storage::exists('public/' .$this->folder . "/{$direktori}" . "-0.jpg") ? "data:image/png;base64," .base64_encode(file_get_contents(public_path('storage/' . $this->folder . "/{$direktori}" . "-0.jpg"))) :'';
+        // $foto = \Storage::exists('public/' .$this->folder . "/{$direktori}" . "-0.jpg") ? "data:image/png;base64," .base64_encode(file_get_contents(public_path('storage/' . $this->folder . "/{$direktori}" . "-0.jpg"))) :'';
+        // $foto = \Storage::exists('public/' .$this->folder . "/{$direktori}" . "-0.jpg") ? "data:image/png;base64," .base64_encode(file_get_contents(public_path('storage/' . $this->folder . "/{$direktori}" . "-0.jpg"))) :'';
+        $foto = asset('storage/' . $this->folder . "/{$direktori}" . "-0.jpg") ;
         // $file = "$direktori" . "-0.jpg";
         // $foto = route('gambar.image',[$direktori,$file]);
         $data = [

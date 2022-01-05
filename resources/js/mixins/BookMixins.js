@@ -15,6 +15,7 @@ export default {
         deskripsi:[],
         file:"",
         penerbit:"",
+        foto:"",
         pdf_url:'',
         totalPage:'',
         harga:0,
