@@ -61,7 +61,7 @@
                             </v-col>
                             <v-col md="4">
                                  <td class="text-left">
-                                    <v-img :src="foto" v-if="foto"/>
+                                    <v-img :src="foto" height="120px" width="80px" v-if="foto"/>
                                     {{!foto ? 'Sedang diproses' : ''}}
                                 </td>
                             </v-col>
