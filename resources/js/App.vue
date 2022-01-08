@@ -1,6 +1,6 @@
 <template>
     <div @click.right="disabled_right_click($event)">
-    <v-app v-if="$route.name != 'login'">
+    <v-app v-if="$route.name != 'login'" >
         <Snakbar/>
         <div v-if="user">
             <Header  />

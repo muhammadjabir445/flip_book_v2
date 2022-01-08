@@ -41,6 +41,7 @@ Route::get('/gambar/buku/{category}/{file}',function($category,$file) {
 })->name('gambar.image');
 Route::get('/get-sekolah','AuthJWT\AuthController@get_sekolah');
 Route::resource('mencoba', 'Users\UsersController');
+Route::get('books/exports', 'Book\BookController@export_excel');
 
 Route::middleware(['auth:api'])->group(function () {
 
@@ -73,3 +74,5 @@ Route::middleware(['auth:api'])->group(function () {
 
 
 });
+
+

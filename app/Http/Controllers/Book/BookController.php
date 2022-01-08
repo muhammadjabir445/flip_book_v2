@@ -11,6 +11,8 @@ use App\Models\MasterDataDetail;
 use App\Services\BookService;
 use App\User;
 use Illuminate\Http\Request;
+use App\Exports\SiswaExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BookController extends Controller
 {
@@ -44,6 +46,10 @@ class BookController extends Controller
         // return $book;
         return new BookRead($book);
     }
+    public function export_excel(Request $request)
+	{
+		return Excel::download(new SiswaExport($request), 'books.xlsx');
+	}
 
     public function books_list(Request $request,$category) {
         $books = Book::with('category')

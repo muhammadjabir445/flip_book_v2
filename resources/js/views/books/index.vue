@@ -41,6 +41,9 @@
                                 <v-btn color="primary"  :to="urlcreate" small tile>
                                     Tambah Data
                                 </v-btn>
+                                 <v-btn color="success"  @click="export_excel()" small tile>
+                                    Export
+                                </v-btn>
                             </v-col>
                         </v-row>
                     </v-container>
@@ -130,6 +133,7 @@
 <script>
 
 import CrudMixin from '../../mixins/CrudMixin'
+var fileDownload = require('js-file-download');
 
 export default {
     name: 'users',
@@ -170,6 +174,18 @@ export default {
             })
             data.loading = false
             this.data.splice(index,1,data)
+        },
+        export_excel() {
+             let url ='books/exports'
+
+            url = url + '?page=' +this.page + "&keyword=" + this.keyword
+
+            url = url + '&category=' + this.id_categori
+           this.config.responseType = 'blob'
+            this.axios.get(url, this.config)
+            .then(ress => { 
+                fileDownload(ress.data,'Books.xlsx')
+            })
         },
         async go(page = null){
 

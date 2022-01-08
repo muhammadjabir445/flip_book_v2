@@ -18,6 +18,7 @@
                         <label for="" align="left">Buku Baru</label>
                         <v-row>
                             <v-col
+                            cols="12"
                             md="8"
                             >
                                       <v-text-field
@@ -59,9 +60,9 @@
                                         required
                                     ></v-select>
                             </v-col>
-                            <v-col md="4">
+                            <v-col cols="12" md="4">
                                  <td class="text-left">
-                                    <v-img :src="foto" height="120px" width="80px" v-if="foto"/>
+                                    <v-img :src="foto" max-height="100%" v-if="foto"/>
                                     {{!foto ? 'Sedang diproses' : ''}}
                                 </td>
                             </v-col>

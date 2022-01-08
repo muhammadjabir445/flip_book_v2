@@ -1,6 +1,6 @@
 <template>
 	<nav>
-		<v-app-bar app :color="color" class="white--text" v-if="user" >
+		<v-app-bar app :color="color" class="white--text" v-if="user" :hide-on-scroll="true">
 		    <v-app-bar-nav-icon color="white"
 		    @click="sideBar()"></v-app-bar-nav-icon>
 		    <v-toolbar-title>Buku Online Digital</v-toolbar-title>
