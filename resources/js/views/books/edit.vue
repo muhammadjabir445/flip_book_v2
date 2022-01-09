@@ -61,10 +61,8 @@
                                     ></v-select>
                             </v-col>
                             <v-col cols="12" md="4">
-                                 <td class="text-left">
-                                    <v-img :src="foto" max-height="100%" v-if="foto"/>
+                                    <v-img :src="foto" width="100%" height="100%" v-if="foto"/>
                                     {{!foto ? 'Sedang diproses' : ''}}
-                                </td>
                             </v-col>
                         </v-row>
                 
